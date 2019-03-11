@@ -1,0 +1,117 @@
+$navButtonWidth: 80;
+
+
+.Nav{
+    display: flex;
+    flex-flow: row-reverse nowrap;
+
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+
+
+    .NavButton {
+        // position: relative;
+        // right: auto;
+
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+
+        margin-right: 40px;
+
+        transform:  translateX(0px) scale(1) rotate(45deg);
+
+        width: $navButtonWidth + px;
+        height: $navButtonWidth + px;
+        background-color: $primary-color;
+        cursor: pointer;
+
+        transition: 0.5s ease-in-out;
+
+        // animation: borderanimation 0.2s linear infinite;
+
+        .text {
+            font-size: 1em;
+            transform: rotate(-45deg);
+            transition: 0.5s ease;
+
+        }
+
+        i {
+            font-size: 1.8em;
+        }
+
+    }
+
+    .NavButton:hover {
+        // animation: borderanimation 1s cubic-bezier(0.075, 0.82, 0.165, 1); 
+        box-shadow: 0px 0px 0px 2px white;
+        // transition: 0.2s ease 0s !important;
+
+        .text {
+            text-shadow: 0px 0px 5px white;
+        }
+
+    }
+
+    @keyframes borderanimation {
+        from {
+            box-shadow: 0px 0px 0px 0px white;
+        }
+        to {
+            box-shadow: 0px 0px 0px 5px white;
+        }
+    }
+
+    .NavButton:nth-of-type(1) {
+        margin-right: 10px;
+        z-index: 10;
+
+        transform: rotate(-135deg);
+        transition: 1s ease;
+    }
+
+    @for $i from 2 through 5 {
+        .NavButton:nth-of-type( #{$i} ) {
+            transition-delay: 0.1 * $i + s;
+        }
+        z-index: 10 - $i * 2;
+    }
+
+
+}
+
+.Nav.collapsed {
+
+
+    .NavButton {
+        // transform:  translateX(100px) scale(0) rotate(0deg); 
+
+        .text {
+            transform: rotate(0deg);
+        }
+
+    }
+
+    .NavButton:nth-of-type(1) {
+        transform:  translateX(0px) scale(1) rotate(0deg);
+    }
+
+    @for $i from 2 through 5 {
+        .NavButton:nth-of-type( #{$i} ) {
+            margin-right: 0px;
+            transform:  translateX( $navButtonWidth * ($i - 1) + px) scale(0.2) rotate(30 * $i + deg);
+        }
+
+    }
+
+    // .NavButton:nth-of-type(2) {transform:  translateX(100px) scale(0) rotate(180deg);}
+    // .NavButton:nth-of-type(3) {transform:  translateX(200px) scale(0) rotate(180deg);}
+    // .NavButton:nth-of-type(4) {transform:  translateX(300px) scale(0) rotate(180deg);}
+    // .NavButton:nth-of-type(5) {transform:  translateX(400px) scale(0) rotate(180deg);}
+
+
+}

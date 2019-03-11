@@ -1,1 +1,18 @@
 @import "./colors.scss";
+
+@import "./Shared/Header/Header.scss";
+@import "./Shared/Nav/Nav.scss";
+@import "./Shared/PageContainer/PageContainer.scss";
+
+
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    font-size: 16px;
+    color: $text-color;
+
+}

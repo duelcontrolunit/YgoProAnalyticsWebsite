@@ -1,0 +1,19 @@
+.PageContainer {
+    display: flex;
+    flex-flow: column nowrap;
+
+    width: 100vw;
+    height: auto;
+
+    // .pageName {
+    //     background-color: $primary-color;
+    //     text-align: center;
+    //     padding: 5px;
+    //     font-size: 1.5em;
+    // }
+
+    .pageContent {
+        background-color: #aaa;
+    }
+
+}
