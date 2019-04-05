@@ -4,11 +4,16 @@ $navButtonWidth: 80;
 .Nav{
     display: flex;
     flex-flow: row-reverse nowrap;
+    align-items: center;
 
     position: fixed;
     top: 20px;
     right: 20px;
     padding: 10px;
+
+    color: $light-text-color;
+
+    z-index: 100;
 
 
     .NavButton {
@@ -19,25 +24,25 @@ $navButtonWidth: 80;
         flex-flow: column;
         align-items: center;
         justify-content: center;
+        // border: 0.5px solid #eee;
+        border: 1.5px solid $primary-light-color;
 
-        margin-right: 40px;
+        margin-right: 20px;
+        margin-top: 0px;
 
-        transform:  translateX(0px) scale(1) rotate(45deg);
+        transform:  translateX(0px) scale(0.85) rotate(45deg);
 
         width: $navButtonWidth + px;
         height: $navButtonWidth + px;
         background-color: $primary-color;
         cursor: pointer;
 
-        transition: 0.5s ease-in-out;
-
-        // animation: borderanimation 0.2s linear infinite;
+        transition: 0.3s ease-out;
 
         .text {
             font-size: 1em;
             transform: rotate(-45deg);
             transition: 0.5s ease;
-
         }
 
         i {
@@ -47,14 +52,11 @@ $navButtonWidth: 80;
     }
 
     .NavButton:hover {
-        // animation: borderanimation 1s cubic-bezier(0.075, 0.82, 0.165, 1); 
         box-shadow: 0px 0px 0px 2px white;
-        // transition: 0.2s ease 0s !important;
 
         .text {
             text-shadow: 0px 0px 5px white;
         }
-
     }
 
     @keyframes borderanimation {
@@ -67,51 +69,69 @@ $navButtonWidth: 80;
     }
 
     .NavButton:nth-of-type(1) {
-        margin-right: 10px;
+        margin: 10px;
         z-index: 10;
 
         transform: rotate(-135deg);
-        transition: 1s ease;
+        transition: 0.9s ease;
     }
 
     @for $i from 2 through 5 {
         .NavButton:nth-of-type( #{$i} ) {
-            transition-delay: 0.1 * $i + s;
+            transition-delay: 0.1 * $i / 2 + s;
+            z-index: 10 - $i * 2;
         }
-        z-index: 10 - $i * 2;
     }
-
 
 }
 
 .Nav.collapsed {
 
-
     .NavButton {
-        // transform:  translateX(100px) scale(0) rotate(0deg); 
 
         .text {
             transform: rotate(0deg);
         }
-
     }
 
     .NavButton:nth-of-type(1) {
+        width: $navButtonWidth * 0.8 + px;
+        height: $navButtonWidth * 0.8 + px;
         transform:  translateX(0px) scale(1) rotate(0deg);
     }
 
     @for $i from 2 through 5 {
         .NavButton:nth-of-type( #{$i} ) {
             margin-right: 0px;
-            transform:  translateX( $navButtonWidth * ($i - 1) + px) scale(0.2) rotate(30 * $i + deg);
+            transform:  translateX( $navButtonWidth * ($i - 1) + px) scale(0) rotate(30 * $i + deg);
         }
+    }
+}
 
+@media only screen and (max-width: 600px) {
+
+    .Nav {
+        flex-flow: column nowrap;
+
+        .NavButton {
+            margin-right: 0px;
+            margin-top: 20px;
+        }
     }
 
-    // .NavButton:nth-of-type(2) {transform:  translateX(100px) scale(0) rotate(180deg);}
-    // .NavButton:nth-of-type(3) {transform:  translateX(200px) scale(0) rotate(180deg);}
-    // .NavButton:nth-of-type(4) {transform:  translateX(300px) scale(0) rotate(180deg);}
-    // .NavButton:nth-of-type(5) {transform:  translateX(400px) scale(0) rotate(180deg);}
+    .Nav.collapsed {
+   
+        .NavButton:nth-of-type(1) {
+            width: $navButtonWidth * 0.8 + px;
+            height: $navButtonWidth * 0.8 + px;
+            transform:  translateX(0px) scale(1) rotate(0deg);
+        }
 
-
+        @for $i from 2 through 5 {
+            .NavButton:nth-of-type( #{$i} ) {
+                margin-right: 0px;
+                transform:  translateY( $navButtonWidth * ($i) * -1 + px) scale(0) rotate(30 * $i + deg);
+            }
+        }
+    }
 }

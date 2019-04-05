@@ -21,7 +21,6 @@ class Nav extends Component {
         });
      }
 
-
     render() { 
         return ( 
             <div className={"Nav " + (this.state.navCollapsed ? "collapsed" : "")}>

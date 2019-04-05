@@ -1,0 +1,23 @@
+.BasicLineRechart
+{
+    h2
+    {
+        margin-left: 50px;
+    }
+}
+
+.NumberDataDisplay
+{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    
+    box-sizing: border-box;
+    padding: 30px;
+
+    .data
+    {
+        font-size: 3em;
+        text-align: center;
+    }
+}
