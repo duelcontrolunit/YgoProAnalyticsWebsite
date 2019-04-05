@@ -30,7 +30,6 @@ class Header extends Component {
         const pageName = this.urlToPagenameCorelation.find((el) => {
             return el.url === this.props.location.pathname
         }).name;
-        console.log(this.props.location);
         if(pageName !== this.currentPath)
         {
           this.previousPath = this.currentPath;

@@ -3,7 +3,6 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 import Colors from '../../colors';
 
 const BasicLineRechart = (props) => {
-    console.log(Colors);
 
     const tooltipWrapperStyle = {
         color: Colors.primary

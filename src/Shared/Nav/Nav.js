@@ -7,8 +7,6 @@ class Nav extends Component {
      }
 
      toggleNavBar() {
-         console.log(this.props);
-         console.log("Nav changed");
          this.setState({
              navCollapsed: !this.state.navCollapsed
          });
