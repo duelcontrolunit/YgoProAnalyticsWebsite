@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWei');
+
+@import "./colors.scss";
+
+@import "./Pages/Main/Main.scss";
+@import "./Shared/Header/Header.scss";
+@import "./Shared/Nav/Nav.scss";
+@import "./Shared/PageContainer/PageContainer.scss";
+@import "./Pages/Statisctics/Statistics.scss";
+@import "./Shared/Recharts/Recharts.scss";
+
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    // font-family: 'Roboto', sans-serif;
+    font-family: 'ZCOOL XiaoWei', serif;
+
+    overflow-x: hidden;
+
+    font-size: 18px;
+    color: $light-text-color;
+
+
+    .App {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: stretch;
+
+        min-height: 100vh;
+    }
+
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+.centredFlexContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}

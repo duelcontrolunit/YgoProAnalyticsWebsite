@@ -1,0 +1,33 @@
+.PageContainer {
+    flex: 1 1 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: stretch;
+
+    width: 100vw;
+    height: auto;
+
+    .pageContent {
+        flex: 1 1 100%;
+
+        display: flex;
+        flex-flow: column wrap;
+        align-items: stretch;
+        justify-content: stretch;
+
+        background-color: $background-color;
+
+        padding: 40px;
+        padding-top: 100px;
+        box-sizing: border-box;
+
+        .page
+        {
+            flex: 1 1 100%;
+        }
+
+    }
+
+}

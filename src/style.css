@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWei");
+.MainPage {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.MainPage .siteDescription {
+  width: 80%;
+  margin: 20px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.Header {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #eee;
+  z-index: 20;
+}
+.Header .headerBg {
+  width: 100%;
+  height: 300px;
+  background-color: #471054;
+}
+.Header .pageName {
+  position: absolute;
+  bottom: -60px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  background-color: #a130c4;
+  box-sizing: border-box;
+  border: 3px solid #ba7dcc;
+  transform: rotate(45deg);
+  text-align: center;
+  padding: 7px;
+  font-size: 1.5em;
+}
+.Header .pageName .innerText {
+  transform: rotate(-45deg);
+}
+.Header .pageName.enter {
+  animation: pageNameEnter 1s ease-out;
+  z-index: 10;
+}
+.Header .pageName.leave {
+  animation: pageNameLeave 0.8s ease-in-out;
+  z-index: 5;
+  transform: translateX(0px) scale(0) rotate(90deg);
+}
+
+@keyframes pageNameEnter {
+  0% {
+    transform: translateX(-200px) scale(0) rotate(-35deg);
+  }
+  25% {
+    transform: translateX(-200px) scale(0) rotate(-35deg);
+  }
+  100% {
+    transform: translateX(0px) scale(1) rotate(45deg);
+  }
+}
+@keyframes pageNameLeave {
+  0% {
+    transform: translateX(0px) scale(1) rotate(45deg);
+  }
+  100% {
+    transform: translateX(200px) scale(0) rotate(90deg);
+  }
+}
+.Nav {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  color: #eee;
+  z-index: 100;
+}
+.Nav .NavButton {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #ba7dcc;
+  margin-right: 20px;
+  margin-top: 0px;
+  transform: translateX(0px) scale(0.85) rotate(45deg);
+  width: 80px;
+  height: 80px;
+  background-color: #a130c4;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+.Nav .NavButton .text {
+  font-size: 1em;
+  transform: rotate(-45deg);
+  transition: 0.5s ease;
+}
+.Nav .NavButton i {
+  font-size: 1.8em;
+}
+.Nav .NavButton:hover {
+  box-shadow: 0px 0px 0px 2px white;
+}
+.Nav .NavButton:hover .text {
+  text-shadow: 0px 0px 5px white;
+}
+@keyframes borderanimation {
+  from {
+    box-shadow: 0px 0px 0px 0px white;
+  }
+  to {
+    box-shadow: 0px 0px 0px 5px white;
+  }
+}
+.Nav .NavButton:nth-of-type(1) {
+  margin: 10px;
+  z-index: 10;
+  transform: rotate(-135deg);
+  transition: 0.9s ease;
+}
+.Nav .NavButton:nth-of-type(2) {
+  transition-delay: 0.1s;
+  z-index: 6;
+}
+.Nav .NavButton:nth-of-type(3) {
+  transition-delay: 0.15s;
+  z-index: 4;
+}
+.Nav .NavButton:nth-of-type(4) {
+  transition-delay: 0.2s;
+  z-index: 2;
+}
+.Nav .NavButton:nth-of-type(5) {
+  transition-delay: 0.25s;
+  z-index: 0;
+}
+
+.Nav.collapsed .NavButton .text {
+  transform: rotate(0deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(1) {
+  width: 64px;
+  height: 64px;
+  transform: translateX(0px) scale(1) rotate(0deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(2) {
+  margin-right: 0px;
+  transform: translateX(80px) scale(0) rotate(60deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(3) {
+  margin-right: 0px;
+  transform: translateX(160px) scale(0) rotate(90deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(4) {
+  margin-right: 0px;
+  transform: translateX(240px) scale(0) rotate(120deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(5) {
+  margin-right: 0px;
+  transform: translateX(320px) scale(0) rotate(150deg);
+}
+
+@media only screen and (max-width: 600px) {
+  .Nav {
+    flex-flow: column nowrap;
+  }
+  .Nav .NavButton {
+    margin-right: 0px;
+    margin-top: 20px;
+  }
+
+  .Nav.collapsed .NavButton:nth-of-type(1) {
+    width: 64px;
+    height: 64px;
+    transform: translateX(0px) scale(1) rotate(0deg);
+  }
+  .Nav.collapsed .NavButton:nth-of-type(2) {
+    margin-right: 0px;
+    transform: translateY(-160px) scale(0) rotate(60deg);
+  }
+  .Nav.collapsed .NavButton:nth-of-type(3) {
+    margin-right: 0px;
+    transform: translateY(-240px) scale(0) rotate(90deg);
+  }
+  .Nav.collapsed .NavButton:nth-of-type(4) {
+    margin-right: 0px;
+    transform: translateY(-320px) scale(0) rotate(120deg);
+  }
+  .Nav.collapsed .NavButton:nth-of-type(5) {
+    margin-right: 0px;
+    transform: translateY(-400px) scale(0) rotate(150deg);
+  }
+}
+.PageContainer {
+  flex: 1 1 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100vw;
+  height: auto;
+}
+.PageContainer .pageContent {
+  flex: 1 1 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  justify-content: stretch;
+  background-color: #2d0238;
+  padding: 40px;
+  padding-top: 100px;
+  box-sizing: border-box;
+}
+.PageContainer .pageContent .page {
+  flex: 1 1 100%;
+}
+
+.BasicLineRechart h2 {
+  margin-left: 50px;
+}
+
+.NumberDataDisplay {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 30px;
+}
+.NumberDataDisplay .data {
+  font-size: 3em;
+  text-align: center;
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-family: "ZCOOL XiaoWei", serif;
+  overflow-x: hidden;
+  font-size: 18px;
+  color: #eee;
+}
+body .App {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+.centredFlexContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=style.css.map */
