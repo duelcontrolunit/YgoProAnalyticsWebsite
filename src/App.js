@@ -7,6 +7,7 @@ import PageContainer from './Shared/PageContainer/PageContainer';
 import Nav from './Shared/Nav/Nav';
 import Header from './Shared/Header/Header';
 import Statistics from './Pages/Statisctics/Statistics';
+import DiscordButton from './Shared/DiscordButton/DiscordButton';
 
 class App extends Component {
   state = {
@@ -19,6 +20,7 @@ class App extends Component {
         <div className="App">
           <Route component={Header} />
           <Route component={Nav} />
+          <Route component={DiscordButton} />
           <PageContainer pageName={this.state.currentPage}>
           <Route path="/" exact component={MainPage} />
           <Route path="/about" exact component={AboutPage} />
