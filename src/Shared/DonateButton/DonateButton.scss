@@ -1,0 +1,45 @@
+.DonateButton {
+    position: fixed;
+
+    top: 72%;
+    left: 0%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    box-sizing: border-box;
+    padding-left: 13px;
+    padding-right: 13px;
+
+    background-color: $primary-color;
+
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    color: inherit;
+    text-decoration: inherit;
+
+    transform: rotate(-90deg);
+    transform-origin: 0% 0%;
+
+    z-index: 100;
+    cursor: pointer;
+
+    .text {
+        margin: 8px;
+        font-size: 1.1em;
+    }
+
+    i {
+        margin: 8px;
+        font-size: 1.7em;
+    }
+
+}
+
+.DonateButton:hover {
+    background-color: lighten($primary-color, 7);
+
+}
