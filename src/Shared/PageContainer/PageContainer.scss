@@ -19,7 +19,7 @@
 
         background-color: $background-color;
 
-        padding: 40px;
+        padding: 10px;
         padding-top: 100px;
         box-sizing: border-box;
 
@@ -27,7 +27,16 @@
         {
             flex: 1 1 100%;
         }
-
     }
+}
 
+
+@media only screen and (max-width: 600px) {
+    .PageContainer {
+
+        .pageContent {
+            padding: 10px;
+            padding-top: 40px;
+        }
+    }
 }

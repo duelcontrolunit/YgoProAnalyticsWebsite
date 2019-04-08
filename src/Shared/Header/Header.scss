@@ -59,12 +59,25 @@
 }
 
 @keyframes pageNameEnter{
-    0% {transform: translateX(-200px) scale(0) rotate(-35deg)}
-    25% {transform: translateX(-200px) scale(0) rotate(-35deg)}
+    0% {transform: translateX(-30vw) scale(0) rotate(-35deg)}
+    25% {transform: translateX(-30vw) scale(0) rotate(45deg)}
     100% {transform: translateX(0px)  scale(1) rotate(45deg)}
 }
 
 @keyframes pageNameLeave{
     0% {transform: translateX(0px) scale(1) rotate(45deg)}
-    100% {transform: translateX(200px)  scale(0) rotate(90deg)}
+    100% {transform: translateX(50px)  scale(0) rotate(90deg)}
+}
+
+
+@media only screen and (max-width: 600px) {
+    .Header {
+
+        .pageName {
+            bottom: -40px;
+
+            width: 80px;
+            height: 80px;
+        }
+    }
 }
