@@ -17,14 +17,10 @@ $navButtonWidth: 80;
 
 
     .NavButton {
-        // position: relative;
-        // right: auto;
-
         display: flex;
         flex-flow: column;
         align-items: center;
         justify-content: center;
-        // border: 0.5px solid #eee;
         border: 1.5px solid $primary-light-color;
 
         margin-right: 20px;
@@ -113,24 +109,30 @@ $navButtonWidth: 80;
     .Nav {
         flex-flow: column nowrap;
 
+        top: 0px;
+        right: 0px;
+
         .NavButton {
             margin-right: 0px;
             margin-top: 20px;
+
+            width: $navButtonWidth * 0.8 + px;
+            height: $navButtonWidth * 0.8 + px;
         }
     }
 
     .Nav.collapsed {
    
         .NavButton:nth-of-type(1) {
-            width: $navButtonWidth * 0.8 + px;
-            height: $navButtonWidth * 0.8 + px;
+            width: $navButtonWidth * 0.6 + px;
+            height: $navButtonWidth * 0.6 + px;
             transform:  translateX(0px) scale(1) rotate(0deg);
         }
 
         @for $i from 2 through 5 {
             .NavButton:nth-of-type( #{$i} ) {
                 margin-right: 0px;
-                transform:  translateY( $navButtonWidth * ($i) * -1 + px) scale(0) rotate(30 * $i + deg);
+                transform:  translateY( $navButtonWidth * 0.8 * ($i) * -1 + px) scale(0) rotate(30 * $i + deg);
             }
         }
     }

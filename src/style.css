@@ -59,10 +59,10 @@
 
 @keyframes pageNameEnter {
   0% {
-    transform: translateX(-200px) scale(0) rotate(-35deg);
+    transform: translateX(-30vw) scale(0) rotate(-35deg);
   }
   25% {
-    transform: translateX(-200px) scale(0) rotate(-35deg);
+    transform: translateX(-30vw) scale(0) rotate(45deg);
   }
   100% {
     transform: translateX(0px) scale(1) rotate(45deg);
@@ -73,7 +73,14 @@
     transform: translateX(0px) scale(1) rotate(45deg);
   }
   100% {
-    transform: translateX(200px) scale(0) rotate(90deg);
+    transform: translateX(50px) scale(0) rotate(90deg);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .Header .pageName {
+    bottom: -40px;
+    width: 80px;
+    height: 80px;
   }
 }
 .Nav {
@@ -175,32 +182,36 @@
 @media only screen and (max-width: 600px) {
   .Nav {
     flex-flow: column nowrap;
+    top: 0px;
+    right: 0px;
   }
   .Nav .NavButton {
     margin-right: 0px;
     margin-top: 20px;
+    width: 64px;
+    height: 64px;
   }
 
   .Nav.collapsed .NavButton:nth-of-type(1) {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     transform: translateX(0px) scale(1) rotate(0deg);
   }
   .Nav.collapsed .NavButton:nth-of-type(2) {
     margin-right: 0px;
-    transform: translateY(-160px) scale(0) rotate(60deg);
+    transform: translateY(-128px) scale(0) rotate(60deg);
   }
   .Nav.collapsed .NavButton:nth-of-type(3) {
     margin-right: 0px;
-    transform: translateY(-240px) scale(0) rotate(90deg);
+    transform: translateY(-192px) scale(0) rotate(90deg);
   }
   .Nav.collapsed .NavButton:nth-of-type(4) {
     margin-right: 0px;
-    transform: translateY(-320px) scale(0) rotate(120deg);
+    transform: translateY(-256px) scale(0) rotate(120deg);
   }
   .Nav.collapsed .NavButton:nth-of-type(5) {
     margin-right: 0px;
-    transform: translateY(-400px) scale(0) rotate(150deg);
+    transform: translateY(-320px) scale(0) rotate(150deg);
   }
 }
 .PageContainer {
@@ -219,7 +230,7 @@
   align-items: stretch;
   justify-content: stretch;
   background-color: #2d0238;
-  padding: 40px;
+  padding: 10px;
   padding-top: 100px;
   box-sizing: border-box;
 }
@@ -227,8 +238,14 @@
   flex: 1 1 100%;
 }
 
-.BasicLineRechart h2 {
-  margin-left: 50px;
+@media only screen and (max-width: 600px) {
+  .PageContainer .pageContent {
+    padding: 10px;
+    padding-top: 40px;
+  }
+}
+.BasicLineRechart {
+  min-width: 450px;
 }
 
 .NumberDataDisplay {
@@ -237,15 +254,23 @@
   justify-content: center;
   box-sizing: border-box;
   padding: 30px;
+  max-width: 400px;
+  text-align: center;
 }
 .NumberDataDisplay .data {
   font-size: 3em;
   text-align: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .BasicLineRechart {
+    width: 100%;
+    min-width: 100px;
+  }
+}
 .DiscordButton {
   position: fixed;
-  top: 40%;
+  bottom: 35%;
   left: 0%;
   display: flex;
   flex-flow: row nowrap;
@@ -277,9 +302,16 @@
   background-color: #8328a0;
 }
 
+@media only screen and (max-height: 500px) {
+  .DiscordButton {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 0.6em;
+  }
+}
 .DonateButton {
   position: fixed;
-  top: 72%;
+  bottom: 1%;
   left: 0%;
   display: flex;
   flex-flow: row nowrap;
@@ -311,6 +343,13 @@
   background-color: #b146d2;
 }
 
+@media only screen and (max-height: 500px) {
+  .DonateButton {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 0.6em;
+  }
+}
 body {
   width: 100vw;
   margin: 0;
@@ -337,6 +376,12 @@ h2 {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,6 @@
 .BasicLineRechart
 {
-    h2
-    {
-        margin-left: 50px;
-    }
+    min-width: 450px;
 }
 
 .NumberDataDisplay
@@ -14,10 +11,21 @@
     
     box-sizing: border-box;
     padding: 30px;
+    max-width: 400px;
+
+    text-align: center;
 
     .data
     {
         font-size: 3em;
         text-align: center;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .BasicLineRechart {
+        width: 100%;
+        min-width: 100px;
     }
 }
