@@ -1,0 +1,48 @@
+.DiscordButton {
+    position: fixed;
+
+    top: 40%;
+    left: 0%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    box-sizing: border-box;
+    padding-left: 13px;
+    padding-right: 13px;
+
+    background-color: lighten($primary-dark-color, 8);
+
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    // border: 2px solid $primary-light-color;
+    // border-top: 0px;
+
+    color: inherit;
+    text-decoration: inherit;
+
+    transform: rotate(-90deg);
+    transform-origin: 0% 0%;
+
+    z-index: 100;
+    cursor: pointer;
+
+    .text {
+        margin: 8px;
+        font-size: 1.1em;
+    }
+
+    i {
+        margin: 8px;
+        font-size: 1.7em;
+    }
+
+}
+
+.DiscordButton:hover {
+    background-color: lighten($primary-dark-color, 15);
+
+}

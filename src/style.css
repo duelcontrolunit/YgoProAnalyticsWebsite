@@ -243,6 +243,74 @@
   text-align: center;
 }
 
+.DiscordButton {
+  position: fixed;
+  top: 40%;
+  left: 0%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: #6c2184;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  color: inherit;
+  text-decoration: inherit;
+  transform: rotate(-90deg);
+  transform-origin: 0% 0%;
+  z-index: 100;
+  cursor: pointer;
+}
+.DiscordButton .text {
+  margin: 8px;
+  font-size: 1.1em;
+}
+.DiscordButton i {
+  margin: 8px;
+  font-size: 1.7em;
+}
+
+.DiscordButton:hover {
+  background-color: #8328a0;
+}
+
+.DonateButton {
+  position: fixed;
+  top: 72%;
+  left: 0%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: #a130c4;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  color: inherit;
+  text-decoration: inherit;
+  transform: rotate(-90deg);
+  transform-origin: 0% 0%;
+  z-index: 100;
+  cursor: pointer;
+}
+.DonateButton .text {
+  margin: 8px;
+  font-size: 1.1em;
+}
+.DonateButton i {
+  margin: 8px;
+  font-size: 1.7em;
+}
+
+.DonateButton:hover {
+  background-color: #b146d2;
+}
+
 body {
   width: 100vw;
   margin: 0;
