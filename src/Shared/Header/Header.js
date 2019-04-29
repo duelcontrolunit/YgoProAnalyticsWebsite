@@ -19,6 +19,10 @@ class Header extends Component {
         {
             url: "/contact",
             name: "Contact"
+        },
+        {
+            url: "/deck",
+            name: "Deck"
         }
         
     ];
@@ -27,9 +31,14 @@ class Header extends Component {
     previousPath = "";
 
     renderPageName () {
-        const pageName = this.urlToPagenameCorelation.find((el) => {
+
+        const corelation = this.urlToPagenameCorelation.find((el) => {
             return el.url === this.props.location.pathname
-        }).name;
+        });
+
+        const pageName = corelation ? corelation.name : "Not Found";
+
+
         if(pageName !== this.currentPath)
         {
           this.previousPath = this.currentPath;
