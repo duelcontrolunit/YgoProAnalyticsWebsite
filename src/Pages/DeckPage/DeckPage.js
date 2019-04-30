@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import BasicLineRechart from './../../Shared/Recharts/BasicLineRechart';
 
 class DeckPage extends Component {
   state = {
@@ -15,7 +16,16 @@ class DeckPage extends Component {
         traps: ["lorem", "ipsum", "dolor"],
         extra: ["qwerty", "uiop"],
         side: ["no idea", "what to write"]
-    }
+    },
+    popularityOnTime: [
+      {time: "april 23", popularity: 2},
+      {time: "april 24", popularity: 3},
+      {time: "april 25", popularity: 5},
+      {time: "april 26", popularity: 8},
+      {time: "april 27", popularity: 5},
+      {time: "april 28", popularity: 6},
+      {time: "april 29", popularity: 5},
+    ]
   };
 
   checkIfProperDeckId() {
@@ -67,6 +77,7 @@ class DeckPage extends Component {
           </tbody>
         </table>
 
+        <BasicLineRechart data={this.state.popularityOnTime} dataKeyName="time" dataName="popularity" >Deck popularity</BasicLineRechart>
 
         <table className="cardsList">
             <tbody>
