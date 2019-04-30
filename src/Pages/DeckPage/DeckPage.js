@@ -42,14 +42,11 @@ class DeckPage extends Component {
   }
 
   render() {
-    console.log(this);
-
     this.checkIfProperDeckId();
     
     return (
       <div className="DeckPage">
           <div className="deckName">{this.state.deckInfo.name}</div>
-
 
         <table className="info">
           <tbody>
@@ -102,7 +99,6 @@ class DeckPage extends Component {
                 </tr>
             </tbody>
         </table>
-
       </div>
     );
   }
