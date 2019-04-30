@@ -19,17 +19,24 @@ class Header extends Component {
         {
             url: "/contact",
             name: "Contact"
-        }
-        
+        },
+        {
+            url: "/deck",
+            name: "Deck"
+        }        
     ];
 
     currentPath = "default";
     previousPath = "";
 
     renderPageName () {
-        const pageName = this.urlToPagenameCorelation.find((el) => {
+
+        const corelation = this.urlToPagenameCorelation.find((el) => {
             return el.url === this.props.location.pathname
-        }).name;
+        });
+
+        const pageName = corelation ? corelation.name : "Not Found";
+
         if(pageName !== this.currentPath)
         {
           this.previousPath = this.currentPath;
@@ -41,6 +48,7 @@ class Header extends Component {
     this.renderPageName();
     return (
       <div className="Header">
+        
         <div className="headerBg" />
 
         <div className="pageName enter" key={this.currentPath}>

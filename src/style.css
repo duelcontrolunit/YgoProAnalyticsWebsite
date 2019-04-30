@@ -244,6 +244,64 @@
     padding-top: 40px;
   }
 }
+.DeckPage {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.DeckPage .deckName {
+  font-size: 2.2em;
+  margin: 10px;
+  width: 80%;
+  text-align: center;
+}
+.DeckPage .info {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-family: "Roboto", sans-serif;
+  color: #bbb;
+  margin: 5px;
+}
+.DeckPage .info tr th {
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.DeckPage .info tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.DeckPage .info tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.DeckPage .cardsList {
+  background-color: rgba(109, 209, 255, 0.2);
+  font-family: "Roboto", sans-serif;
+  color: #bbb;
+  margin: 25px;
+}
+.DeckPage .cardsList tr th {
+  text-align: left;
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 2px;
+}
+.DeckPage .cardsList tr th .card {
+  margin: 1px;
+}
+.DeckPage .cardsList tr th:nth-child(1) {
+  color: #ddd;
+}
+.DeckPage .cardsList tr th:nth-child(2) {
+  min-width: 20vw;
+}
+.DeckPage .cardsList tr:nth-child(odd) {
+  background-color: rgba(109, 209, 255, 0.2);
+}
+.DeckPage .cardsList tr:nth-child(even) {
+  background-color: rgba(109, 209, 255, 0.1);
+}
+
 .BasicLineRechart {
   min-width: 450px;
 }

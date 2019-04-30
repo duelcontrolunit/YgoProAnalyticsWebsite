@@ -23,7 +23,7 @@ class MainPage extends Component {
                     Welcome to YGO Analitics!
                 </div>
                 
-            <BasicLineRechart data={this.usersOnServerData} />
+            <BasicLineRechart data={this.usersOnServerData} dataKeyName="data1" dataName="activeUsers">Users live on Server</BasicLineRechart>
             <NumberDataDisplay data={this.uniqueDecksNumber}>Number of unique decks in database:</NumberDataDisplay>
 
             </div>
