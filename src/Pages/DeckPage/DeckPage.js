@@ -8,7 +8,7 @@ class DeckPage extends Component {
       type: "Interesting Type",
       master: "Master player",
       submissionDate: "1 april 2019",
-      author: "analDestructor666"
+      author: "niceGuyWithProperNickname"
     },
     cardsList: {
         monsters: ["Ricardo","Big chungus","Dat boi"],
@@ -40,7 +40,6 @@ class DeckPage extends Component {
       });
       return(jsxArray);
   }
-
 
   render() {
     console.log(this);
@@ -103,8 +102,6 @@ class DeckPage extends Component {
                 </tr>
             </tbody>
         </table>
-
-
 
       </div>
     );
