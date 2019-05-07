@@ -1,0 +1,58 @@
+.Logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    width: auto;
+    height: 85%;
+    background-size: contain;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Anton', sans-serif;
+
+    .svg {
+        height: 100%;
+        
+        #topPart {
+            fill: $primary-color;
+            animation: logoPartsComeIn 1s;
+        }
+        #bottomPart {
+            fill: $primary-light-color;
+            animation: logoPartsComeIn 2s;
+        }
+
+        text {
+            fill: lighten($primary-light-color, 20);
+            font-family: 'Rubik Mono One', sans-serif;
+            font-weight: 600;
+            font-style: italic;
+            font-size: 19px;
+            text-align: right;
+            animation: logoTextComeIn 3s;
+        }
+    }
+}
+
+@media only screen and(max-width: 700px) {
+    .Logo {
+        top: 15px;
+        left: 15px;
+        height: 60%;
+    }
+}
+
+@keyframes logoPartsComeIn {
+    0% {opacity: 0; transform: translateY(-10px);}
+    40% {opacity: 0; transform: translateY(-10px);}
+    100% {opacity: 1; transform: translateY(0px);}
+}
+
+@keyframes logoTextComeIn {
+    0% {opacity: 0; transform: translateX(-10px);}
+    40% {opacity: 0; transform: translateX(-10px);}
+    100% {opacity: 1; transform: translateX(0px);}
+}
