@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Logo from "./subcomponents/Logo";
 
 class Header extends Component {
   state = {};
@@ -50,6 +51,7 @@ class Header extends Component {
       <div className="Header">
         
         <div className="headerBg" />
+        <Logo />
 
         <div className="pageName enter" key={this.currentPath}>
           <div className="innerText">{this.currentPath}</div>

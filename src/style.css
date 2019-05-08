@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWei");
+@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWe");
+@import url("https://fonts.googleapis.com/css?family=Catamaran:500");
 .MainPage {
   display: flex;
   flex-flow: row wrap;
@@ -24,7 +25,7 @@
 }
 .Header .headerBg {
   width: 100%;
-  height: 300px;
+  height: 200px;
   background-color: #471054;
 }
 .Header .pageName {
@@ -406,6 +407,73 @@
     padding-right: 5px;
     padding-left: 5px;
     font-size: 0.6em;
+  }
+}
+.Logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: auto;
+  height: 85%;
+  background-size: contain;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 4.5px;
+  font-family: "Catamaran", sans-serif;
+}
+.Logo .svg {
+  height: 100%;
+}
+.Logo .svg #topPart {
+  fill: #a130c4;
+  animation: logoPartsComeIn 1s;
+}
+.Logo .svg #bottomPart {
+  fill: #ba7dcc;
+  animation: logoPartsComeIn 2s;
+}
+.Logo .svg text {
+  fill: #e1c6e9;
+  font-size: 16px;
+  text-align: right;
+  animation: logoTextComeIn 3s;
+}
+
+@media only screen and (max-width: 700px) {
+  .Logo {
+    top: 15px;
+    left: 15px;
+    height: 60%;
+  }
+}
+@keyframes logoPartsComeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes logoTextComeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
 body {
