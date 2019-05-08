@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWe|family=Rubik+Mono+One");
+@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWe");
+@import url("https://fonts.googleapis.com/css?family=Catamaran:500");
 .MainPage {
   display: flex;
   flex-flow: row wrap;
@@ -419,7 +420,8 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  font-family: "Anton", sans-serif;
+  letter-spacing: 4.5px;
+  font-family: "Catamaran", sans-serif;
 }
 .Logo .svg {
   height: 100%;
@@ -434,10 +436,7 @@
 }
 .Logo .svg text {
   fill: #e1c6e9;
-  font-family: "Rubik Mono One", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 19px;
+  font-size: 16px;
   text-align: right;
   animation: logoTextComeIn 3s;
 }
