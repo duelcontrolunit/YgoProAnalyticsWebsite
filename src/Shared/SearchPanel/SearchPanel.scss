@@ -1,0 +1,115 @@
+.SearchPanel {
+    position: fixed;
+    top: 40%;
+    right: 0%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+
+    .toggleButton {
+        background-color: darken($primary-color, 15);
+        padding: 12px;
+        padding-right: 4px;
+        font-size: 1.2em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        cursor: pointer;
+    }
+
+    .toggleButton:hover {
+        background-color: darken($primary-color, 8);
+    }
+
+    .toggleButton:active {
+        background-color: $primary-color;
+    }
+
+    .content {
+        align-self: stretch;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        
+        min-height: 100%;
+    
+        border: solid $primary-color 3px;
+        border-right: none;
+        background-color: darken($primary-color, 15);
+    
+        padding: 5px;
+        padding-right: 0px;
+        padding-left: 0px;
+
+        width: auto;
+        max-width: 0px;
+        transition: 1s ease;
+    
+        input {    
+            background-color: $primary-color;
+            color: $light-text-color;
+
+            border: solid $primary-light-color 2px;
+            border-radius: 5px;
+    
+            padding: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin: 2px;
+            margin-right: 5px;
+            margin-left: 10px;
+    
+            font-family: inherit;
+            font-size: 1em;
+            text-align: center;
+            box-sizing: border-box;
+    
+        }
+        input:focus {
+            outline: none;
+        }
+    
+        label {
+            margin: 2px;
+            margin-right: 5px;
+            margin-left: 10px;
+
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: $primary-color;
+            border: 3px solid $primary-light-color;
+            border-radius: 10px;
+            color: $light-text-color;
+
+            padding: 5px;
+            margin: 6px;
+            margin-left: 10px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: lighten($primary-color, 6);
+        }        
+        button:active {
+            background-color: lighten($primary-color, 12);
+        }
+        button:focus {
+            outline: none;
+        }
+    }
+
+    .content.active {
+        max-width: 400px;
+    }
+}

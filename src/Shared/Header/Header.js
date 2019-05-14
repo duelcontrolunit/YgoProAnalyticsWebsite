@@ -11,7 +11,7 @@ class Header extends Component {
         },
         {
             url: "/decklist",
-            name: "Decklists"
+            name: "Decklist"
         },
         {
             url: "/stats",

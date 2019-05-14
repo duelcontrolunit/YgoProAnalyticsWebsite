@@ -1,0 +1,55 @@
+.DeckResult {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    margin: 5px;
+    background-color: $primary-dark-color;
+    border-radius: 10px;  
+    padding-bottom: 5px;
+
+    cursor: pointer;
+
+    .info {
+        padding: 3px;
+        margin: 2px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .name {
+        padding: 0px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin: 0px;
+
+        text-align: center;
+        font-weight: 600;
+        background-color: lighten($primary-dark-color,15);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        width: 100%;
+    }
+    
+}
+
+.DeckResult:hover {
+    background-color: lighten($primary-dark-color, 8);
+    .name {
+        background-color: lighten($primary-dark-color,20);
+    }
+}
+
+.DeckResult:active {
+    background-color: lighten($primary-dark-color, 16);
+    .name {
+        background-color: lighten($primary-dark-color,25);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .DeckResult {
+        font-size: 0.9em;
+    }
+}
