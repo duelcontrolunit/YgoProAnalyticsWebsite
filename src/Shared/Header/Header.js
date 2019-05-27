@@ -45,13 +45,17 @@ class Header extends Component {
         }
     }
 
+    redirectTo(url) {
+      this.props.history.push(url);
+    }
+
   render() {
     this.renderPageName();
     return (
       <div className="Header">
         
         <div className="headerBg" />
-        <Logo />
+        <Logo clickHandler={() => {this.redirectTo("/")}} />
 
         <div className="pageName enter" key={this.currentPath}>
           <div className="innerText">{this.currentPath}</div>

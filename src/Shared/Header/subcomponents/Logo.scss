@@ -16,6 +16,8 @@
     letter-spacing: 4.5px;
     font-family: 'Catamaran', sans-serif;
 
+    cursor: pointer;
+
     .svg {
         height: 100%;
         
@@ -33,6 +35,24 @@
             font-size: 16px;
             text-align: right;
             animation: logoTextComeIn 3s;
+        }
+    }
+}
+
+.Logo:hover {
+
+    transition-duration: 2s;
+
+    .svg {        
+        #topPart {
+            fill: lighten($primary-color, 7);
+        }
+        #bottomPart {
+            fill: lighten($primary-light-color, 7);
+        }
+
+        text {
+            fill: lighten($primary-light-color, 25);
         }
     }
 }

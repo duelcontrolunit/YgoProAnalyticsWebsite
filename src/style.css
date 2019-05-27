@@ -438,6 +438,7 @@
   justify-content: center;
   letter-spacing: 4.5px;
   font-family: "Catamaran", sans-serif;
+  cursor: pointer;
 }
 .Logo .svg {
   height: 100%;
@@ -455,6 +456,19 @@
   font-size: 16px;
   text-align: right;
   animation: logoTextComeIn 3s;
+}
+
+.Logo:hover {
+  transition-duration: 2s;
+}
+.Logo:hover .svg #topPart {
+  fill: #b146d2;
+}
+.Logo:hover .svg #bottomPart {
+  fill: #c897d6;
+}
+.Logo:hover .svg text {
+  fill: #ebd9f0;
 }
 
 @media only screen and (max-width: 700px) {
