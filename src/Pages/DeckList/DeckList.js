@@ -39,9 +39,7 @@ class DeckList extends Component {
     }
 
     render() { 
-
         let resultList = [];
-
         this.state.searchResult.forEach((deck) => {
             resultList.push(<DeckResult
              key={deck.id}  
@@ -50,8 +48,7 @@ class DeckList extends Component {
              proto={deck.proto}
              date={deck.date}
              author={deck.author}
-             />)
-            
+             />)            
         });
         console.log(resultList);
 
