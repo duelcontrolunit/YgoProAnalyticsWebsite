@@ -245,6 +245,22 @@
     padding-top: 40px;
   }
 }
+.DeckList {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+.DeckList .searchResult {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+}
+
 .DeckPage {
   display: flex;
   flex-flow: row wrap;
@@ -422,6 +438,7 @@
   justify-content: center;
   letter-spacing: 4.5px;
   font-family: "Catamaran", sans-serif;
+  cursor: pointer;
 }
 .Logo .svg {
   height: 100%;
@@ -439,6 +456,19 @@
   font-size: 16px;
   text-align: right;
   animation: logoTextComeIn 3s;
+}
+
+.Logo:hover {
+  transition-duration: 2s;
+}
+.Logo:hover .svg #topPart {
+  fill: #b146d2;
+}
+.Logo:hover .svg #bottomPart {
+  fill: #c897d6;
+}
+.Logo:hover .svg text {
+  fill: #ebd9f0;
 }
 
 @media only screen and (max-width: 700px) {
@@ -476,6 +506,183 @@
     transform: translateX(0px);
   }
 }
+.SearchBar {
+  padding: 1px;
+  background-color: #a130c4;
+  box-sizing: border-box;
+  border: 3px solid #ba7dcc;
+  animation: descend 2.5s;
+}
+.SearchBar input {
+  background-color: #a130c4;
+  color: #eee;
+  width: auto;
+  border: none;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-family: inherit;
+  font-size: 1em;
+  text-align: center;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 150px;
+}
+.SearchBar input:focus {
+  outline: none;
+}
+.SearchBar button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: #eee;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .SearchBar {
+    margin-top: 30px;
+  }
+}
+.SearchPanel {
+  position: fixed;
+  top: 40%;
+  right: 0%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.SearchPanel .toggleButton {
+  background-color: #6f2187;
+  padding: 12px;
+  padding-right: 4px;
+  font-size: 1.2em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+}
+.SearchPanel .toggleButton:hover {
+  background-color: #8628a3;
+}
+.SearchPanel .toggleButton:active {
+  background-color: #a130c4;
+}
+.SearchPanel .content {
+  align-self: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  min-height: 100%;
+  border: solid #a130c4 3px;
+  border-right: none;
+  background-color: #6f2187;
+  padding: 5px;
+  padding-right: 0px;
+  padding-left: 0px;
+  width: auto;
+  max-width: 0px;
+  transition: 1s ease;
+}
+.SearchPanel .content input {
+  background-color: #a130c4;
+  color: #eee;
+  border: solid #ba7dcc 2px;
+  border-radius: 5px;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 2px;
+  margin-right: 5px;
+  margin-left: 10px;
+  font-family: inherit;
+  font-size: 1em;
+  text-align: center;
+  box-sizing: border-box;
+}
+.SearchPanel .content input:focus {
+  outline: none;
+}
+.SearchPanel .content label {
+  margin: 2px;
+  margin-right: 5px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.SearchPanel .content button {
+  background-color: #a130c4;
+  border: 3px solid #ba7dcc;
+  border-radius: 10px;
+  color: #eee;
+  padding: 5px;
+  margin: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.SearchPanel .content button:hover {
+  background-color: #af42d1;
+}
+.SearchPanel .content button:active {
+  background-color: #b95ad7;
+}
+.SearchPanel .content button:focus {
+  outline: none;
+}
+.SearchPanel .content.active {
+  max-width: 400px;
+}
+
+.DeckResult {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin: 5px;
+  background-color: #511963;
+  border-radius: 10px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+.DeckResult .info {
+  padding: 3px;
+  margin: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.DeckResult .name {
+  padding: 0px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0px;
+  text-align: center;
+  font-weight: 600;
+  background-color: #8328a0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+}
+
+.DeckResult:hover {
+  background-color: #6c2184;
+}
+.DeckResult:hover .name {
+  background-color: #942eb4;
+}
+
+.DeckResult:active {
+  background-color: #8629a4;
+}
+.DeckResult:active .name {
+  background-color: #a433c9;
+}
+
+@media only screen and (max-width: 600px) {
+  .DeckResult {
+    font-size: 0.9em;
+  }
+}
 body {
   width: 100vw;
   margin: 0;
@@ -504,6 +711,20 @@ h2 {
   justify-content: center;
 }
 
+@keyframes descend {
+  0% {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 @media only screen and (max-width: 600px) {
   body {
     font-size: 12px;

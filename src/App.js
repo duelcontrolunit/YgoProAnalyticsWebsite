@@ -10,6 +10,7 @@ import Statistics from './Pages/Statisctics/Statistics';
 import DiscordButton from './Shared/DiscordButton/DiscordButton';
 import DonateButton from './Shared/DonateButton/DonateButton';
 import DeckPage from './Pages/DeckPage/DeckPage';
+import DeckList from './Pages/DeckList/DeckList';
 
 class App extends Component {
   state = {
@@ -28,6 +29,7 @@ class App extends Component {
           <Route path="/" exact component={MainPage} />
           <Route path="/about" exact component={AboutPage} />
           <Route path="/stats" exact component={Statistics} />
+          <Route path="/decklist" exact component={DeckList} />
           <Route path="/deck" component={DeckPage} />
           </PageContainer>
         </div>

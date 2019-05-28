@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BasicLineRechart from './../../Shared/Recharts/BasicLineRechart';
+import BasicRadarChart from "../../Shared/Recharts/BasicRadarChart";
 
 class DeckPage extends Component {
   state = {
@@ -25,6 +26,32 @@ class DeckPage extends Component {
       {time: "april 27", popularity: 5},
       {time: "april 28", popularity: 6},
       {time: "april 29", popularity: 5},
+    ],
+    radarChartData: [
+      {
+        "type": "Monsters",
+        "Maindeck": 90,
+        "Sidedeck": 50,
+        "fullMark": 100
+      },
+      {
+        "type": "Spells",
+        "Maindeck": 80,
+        "Sidedeck": 40,
+        "fullMark": 100
+      },
+      {
+        "type": "Traps",
+        "Maindeck": 70,
+        "Sidedeck": 60,
+        "fullMark": 100
+      },
+      {
+        "type": "Extra",
+        "Maindeck": 40,
+        "Sidedeck": 80,
+        "fullMark": 100
+      }
     ]
   };
 
@@ -74,6 +101,8 @@ class DeckPage extends Component {
         </table>
 
         <BasicLineRechart data={this.state.popularityOnTime} dataKeyName="time" dataName="popularity" >Deck popularity</BasicLineRechart>
+
+        <BasicRadarChart data={this.state.radarChartData} dataKeyName="type" domainValue={[0,100]} specificDataKeyNames={["Maindeck","Sidedeck"]} >Cool data</BasicRadarChart>
 
         <table className="cardsList">
             <tbody>

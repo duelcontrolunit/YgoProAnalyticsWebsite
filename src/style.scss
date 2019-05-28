@@ -7,12 +7,16 @@
 @import "./Shared/Nav/Nav.scss";
 @import "./Shared/PageContainer/PageContainer.scss";
 @import "./Pages/Statisctics/Statistics.scss";
+@import "./Pages/DeckList/DeckList.scss";
 @import "./Pages/DeckPage/DeckPage.scss";
 
 @import "./Shared/Recharts/Recharts.scss";
 @import "./Shared/DiscordButton/DiscordButton.scss";
 @import "./Shared/DonateButton/DonateButton.scss";
 @import "./Shared/Header/subcomponents/Logo.scss";
+@import "./Shared/SearchBar/SearchBar.scss";
+@import "./Shared/SearchPanel/SearchPanel.scss";
+@import "./Pages/DeckList/DeckResult/DeckResult.scss";
 
 body {
     width: 100vw;
@@ -46,6 +50,12 @@ h2 {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+}
+
+@keyframes descend {
+    0% {opacity: 0; transform: translateY(-150px);}
+    40% {opacity: 0; transform: translateY(-150px);}
+    100% {opacity: 1; transform: translateY(0px);}
 }
 
 @media only screen and (max-width: 600px) {
