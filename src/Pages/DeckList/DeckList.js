@@ -21,7 +21,8 @@ class DeckList extends Component {
             {id: 9,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
             {id: 12,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
             {id: 14,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
-        ]
+        ],
+        numberOfPages: 15
      }
 
     inputChanged(event) {
@@ -33,12 +34,45 @@ class DeckList extends Component {
     }
 
     redirectToDecklist(id) {
-        console.log(this.props);
-        console.log(id);
         this.props.history.push("/deck?id=" + id);
     }
 
+    getPageNumber() {
+        if(!this.props.location.search) return 1;
+        else return Number(this.props.location.search.split('=')[1]);
+    }
+
+    goToPage(page) {
+        this.props.history.push("/decklist?page=" + page);
+    }
+
     render() { 
+        let pagesList = [];
+        const currentPage = this.getPageNumber();
+        const pagesOnSidesOfResult = 3;
+
+        for (let i = 1; i <= this.state.numberOfPages; i++) {
+            let classList = i === currentPage ? "pageNumber currentPage" : "pageNumber"
+
+            if(i+1 > currentPage + pagesOnSidesOfResult) {
+                if(i < this.state.numberOfPages) 
+                    pagesList.push(<i className="fas fa-ellipsis-h" key="dots2" />);
+                i = this.state.numberOfPages;
+            }
+
+            const currentI = i; //in order to overcole weird js variable mechanics
+            pagesList.push(
+                <div className={classList} key ={i} onClick={() => {this.goToPage(currentI)}}>
+                    {i}
+                </div>
+            );
+            
+            if(i-1 < currentPage - pagesOnSidesOfResult - 1) {
+                pagesList.push(<i className="fas fa-ellipsis-h" key="dots1" />);
+                i = currentPage - pagesOnSidesOfResult;
+            }                
+        }
+
         let resultList = [];
         this.state.searchResult.forEach((deck) => {
             resultList.push(<DeckResult
@@ -50,7 +84,6 @@ class DeckList extends Component {
              author={deck.author}
              />)            
         });
-        console.log(resultList);
 
         return ( 
             <div className="DeckList">
@@ -71,7 +104,10 @@ class DeckList extends Component {
 
                     <button>Search</button>
                 </SearchPanel>
-                <div className="searchResult">{resultList}</div>
+                <div className="searchResult">
+                    {resultList}
+                    </div>
+                <div className="pagesList">{pagesList}</div>
             </div>
          );
     }

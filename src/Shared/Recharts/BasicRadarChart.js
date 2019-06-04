@@ -12,7 +12,7 @@ import {
 
 const BasicRadarChart = props => {
   return (
-    <div className="BasicLineRechart centredFlexContainer">
+    <div className="BasicLineRechart ygoChart centredFlexContainer">
         <h2>{props.children}</h2>
         <ResponsiveContainer height={300} width="90%" >
 
