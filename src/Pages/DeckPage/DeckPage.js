@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BasicLineRechart from './../../Shared/Recharts/BasicLineRechart';
 import BasicRadarChart from "../../Shared/Recharts/BasicRadarChart";
+import StackedBarChart from './../../Shared/Recharts/StackedBarChart';
 
 class DeckPage extends Component {
   state = {
@@ -52,6 +53,15 @@ class DeckPage extends Component {
         "Sidedeck": 80,
         "fullMark": 100
       }
+    ],
+    deckWinRatio: [
+      {date: "april 24", loses: 4, wins: 4},
+      {date: "april 23", loses: 5, wins: 2},
+      {date: "april 25", loses: 0, wins: 5},
+      {date: "april 26", loses: 1, wins: 7},
+      {date: "april 27", loses: 2, wins: 8},
+      {date: "april 28", loses: 8, wins: 4},
+      {date: "april 29", loses: 2, wins: 2},
     ]
   };
 
@@ -103,6 +113,8 @@ class DeckPage extends Component {
         <BasicLineRechart data={this.state.popularityOnTime} dataKeyName="time" dataName="popularity" >Deck popularity</BasicLineRechart>
 
         <BasicRadarChart data={this.state.radarChartData} dataKeyName="type" domainValue={[0,100]} specificDataKeyNames={["Maindeck","Sidedeck"]} >Cool data</BasicRadarChart>
+
+        <StackedBarChart data={this.state.deckWinRatio} dataKeyName="date" specificDataKeyNames={["wins","loses"]}>Deck win ratio</StackedBarChart>
 
         <table className="cardsList">
             <tbody>

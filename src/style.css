@@ -21,6 +21,7 @@
   justify-content: center;
   width: 100%;
   color: #eee;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
   z-index: 20;
 }
 .Header .headerBg {
@@ -39,6 +40,7 @@
   height: 120px;
   background-color: #a130c4;
   box-sizing: border-box;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
   border: 3px solid #ba7dcc;
   transform: rotate(45deg);
   text-align: center;
@@ -101,6 +103,7 @@
   align-items: center;
   justify-content: center;
   border: 1.5px solid #ba7dcc;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
   margin-right: 20px;
   margin-top: 0px;
   transform: translateX(0px) scale(0.85) rotate(45deg);
@@ -135,6 +138,7 @@
 .Nav .NavButton:nth-of-type(1) {
   margin: 10px;
   z-index: 10;
+  box-shadow: -3px -3px 5px 0px rgba(0, 0, 0, 0.4);
   transform: rotate(-135deg);
   transition: 0.9s ease;
 }
@@ -155,6 +159,9 @@
   z-index: 0;
 }
 
+.Nav.collapsed .NavButton {
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
+}
 .Nav.collapsed .NavButton .text {
   transform: rotate(0deg);
 }
@@ -250,15 +257,41 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  margin-right: 50px;
-  margin-left: 50px;
 }
 .DeckList .searchResult {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
+  min-height: 200px;
   margin-top: 30px;
+}
+.DeckList .pagesList {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.DeckList .pagesList .pageNumber {
+  background-color: #511963;
+  font-size: 1.2em;
+  text-align: center;
+  border: solid #72238c 1px;
+  border-radius: 2px;
+  margin: 3px;
+  padding: 6px;
+  min-width: 30px;
+  min-height: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.DeckList .pagesList i {
+  margin: 4px;
+  font-size: 0.8em;
+}
+.DeckList .pagesList .currentPage {
+  background-color: #a130c4;
 }
 
 .DeckPage {
@@ -319,8 +352,9 @@
   background-color: rgba(109, 209, 255, 0.1);
 }
 
-.BasicLineRechart {
-  min-width: 450px;
+.BasicLineRechart, .ygoChart {
+  width: 450px;
+  max-width: 95vw;
 }
 
 .NumberDataDisplay {
@@ -355,6 +389,7 @@
   padding-left: 13px;
   padding-right: 13px;
   background-color: #6c2184;
+  box-shadow: -3px 3px 10px 0px rgba(0, 0, 0, 0.4);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   color: inherit;
@@ -396,6 +431,7 @@
   padding-left: 13px;
   padding-right: 13px;
   background-color: #a130c4;
+  box-shadow: -3px 3px 10px 0px rgba(0, 0, 0, 0.4);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   color: inherit;
@@ -512,6 +548,7 @@
   box-sizing: border-box;
   border: 3px solid #ba7dcc;
   animation: descend 2.5s;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
 }
 .SearchBar input {
   background-color: #a130c4;
@@ -560,6 +597,7 @@
   font-size: 1.2em;
   writing-mode: vertical-rl;
   text-orientation: mixed;
+  box-shadow: -3px 3px 10px 0px rgba(0, 0, 0, 0.4);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   cursor: pointer;
@@ -580,6 +618,7 @@
   border: solid #a130c4 3px;
   border-right: none;
   background-color: #6f2187;
+  box-shadow: -3px 3px 10px 0px rgba(0, 0, 0, 0.4);
   padding: 5px;
   padding-right: 0px;
   padding-left: 0px;
@@ -681,6 +720,48 @@
 @media only screen and (max-width: 600px) {
   .DeckResult {
     font-size: 0.9em;
+  }
+}
+.LoadingIcon {
+  animation: loadingAnimationMainPart 6s infinite;
+}
+.LoadingIcon .innerPart {
+  width: 50px;
+  height: 50px;
+  border: solid #a130c4 3px;
+  animation: loadingAnimationInnerPart 0.5s infinite;
+  transform: rotate(45deg);
+}
+
+@keyframes loadingAnimationInnerPart {
+  0% {
+    border-bottom: solid #a130c4 8px;
+  }
+  25% {
+    border-left: solid #a130c4 8px;
+  }
+  50% {
+    border-top: solid #a130c4 8px;
+  }
+  100% {
+    border-right: solid #a130c4 8px;
+  }
+}
+@keyframes loadingAnimationMainPart {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 body {

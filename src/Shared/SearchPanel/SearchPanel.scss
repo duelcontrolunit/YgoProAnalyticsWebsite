@@ -17,6 +17,7 @@
         font-size: 1.2em;
         writing-mode: vertical-rl;
         text-orientation: mixed;
+        box-shadow: -3px 3px 10px 0px rgba(#000, 0.4);
 
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
@@ -44,6 +45,7 @@
         border: solid $primary-color 3px;
         border-right: none;
         background-color: darken($primary-color, 15);
+        box-shadow: -3px 3px 10px 0px rgba(#000, 0.4);
     
         padding: 5px;
         padding-right: 0px;

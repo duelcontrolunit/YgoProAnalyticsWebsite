@@ -4,15 +4,49 @@
     justify-content: center;
     align-items: center;
 
-    margin-right: 50px;
-    margin-left: 50px;
-
     .searchResult {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
         align-items: center;
 
+        min-height: 200px;
+
         margin-top: 30px;
+    }
+
+    .pagesList {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .pageNumber {
+            background-color: $primary-dark-color;
+            font-size: 1.2em;
+            text-align: center;
+
+            border: solid lighten($primary-dark-color, 10) 1px;
+            border-radius: 2px;
+
+            margin: 3px;
+            padding: 6px;
+            min-width: 30px;
+            min-height: 30px;
+            box-sizing: border-box;
+
+            cursor: pointer;
+        }
+
+        i {
+            margin: 4px;
+            font-size: 0.8em;
+        }
+
+        .currentPage {
+            background-color: $primary-color;
+        }
     }
 }

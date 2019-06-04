@@ -8,6 +8,7 @@
 
     width: 100%;
     color: $light-text-color;
+    box-shadow: 2px 2px 5px 0px rgba(#000, 0.2);
     
     z-index: 20;
     
@@ -31,6 +32,7 @@
         height: 120px;
         background-color: $primary-color;
         box-sizing: border-box;
+        box-shadow: 3px 3px 10px 0px rgba(#000, 0.4);
         border: 3px solid $primary-light-color;
         transform: rotate(45deg);
 

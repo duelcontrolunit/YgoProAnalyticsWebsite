@@ -9,20 +9,11 @@ import {
   ResponsiveContainer
 } from "recharts";
 import Colors from "../../colors";
+import InlineStyles from "../../inlineStyles";
 
 const BasicLineRechart = props => {
-  const tooltipWrapperStyle = {
-    color: Colors.primary
-  };
-
-  const wrapperTooltipStyle = {
-    borderColor: Colors.primaryLight,
-    backgroundColor: Colors.primaryDark,
-    borderWidth: 1.5
-  };
-
   return (
-    <div className="BasicLineRechart centredFlexContainer">
+    <div className="BasicLineRechart ygoChart centredFlexContainer">
       <h2>{props.children}</h2>
       <ResponsiveContainer height={300} width="90%">
         <LineChart
@@ -43,8 +34,8 @@ const BasicLineRechart = props => {
           <XAxis dataKey={props.dataKeyName} stroke={Colors.primaryLight} />
           <YAxis stroke={Colors.primaryLight} />
           <Tooltip
-            wrapperStyle={tooltipWrapperStyle}
-            contentStyle={wrapperTooltipStyle}
+            wrapperStyle={InlineStyles.tooltipWrapperStyle}
+            contentStyle={InlineStyles.wrapperTooltipStyle}
           />
         </LineChart>
       </ResponsiveContainer>
