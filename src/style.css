@@ -238,7 +238,7 @@
   align-items: stretch;
   justify-content: stretch;
   background-color: #2d0238;
-  padding: 10px;
+  padding: 20px;
   padding-top: 100px;
   box-sizing: border-box;
 }
@@ -257,6 +257,8 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  padding-left: 30px;
+  padding-right: 35px;
 }
 .DeckList .searchResult {
   display: flex;
@@ -299,6 +301,11 @@
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  min-height: 250px;
+}
+.DeckPage div {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .DeckPage .deckName {
   font-size: 2.2em;
@@ -324,32 +331,54 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 .DeckPage .cardsList {
+  align-self: flex-start;
   background-color: rgba(109, 209, 255, 0.2);
+  flex: 1 1 auto;
   font-family: "Roboto", sans-serif;
   color: #bbb;
   margin: 25px;
 }
-.DeckPage .cardsList tr th {
+.DeckPage .cardsList thead {
+  height: 20px;
+  font-size: 1.4em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.DeckPage .cardsList tBody tr th {
   text-align: left;
+  font-size: 0.9em;
   padding: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
   margin: 2px;
 }
-.DeckPage .cardsList tr th .card {
-  margin: 1px;
+.DeckPage .cardsList tBody tr th .card {
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 10px;
 }
-.DeckPage .cardsList tr th:nth-child(1) {
+.DeckPage .cardsList tBody tr th .card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.DeckPage .cardsList tBody tr th:nth-child(1) {
   color: #ddd;
 }
-.DeckPage .cardsList tr th:nth-child(2) {
+.DeckPage .cardsList tBody tr th:nth-child(2) {
   min-width: 20vw;
 }
-.DeckPage .cardsList tr:nth-child(odd) {
-  background-color: rgba(109, 209, 255, 0.2);
+.DeckPage .cardsList tBody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.18);
 }
-.DeckPage .cardsList tr:nth-child(even) {
-  background-color: rgba(109, 209, 255, 0.1);
+.DeckPage .cardsList tBody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.DeckPage .cardsList.mainDeck {
+  background-color: #100238;
+}
+.DeckPage .cardsList.sideDeck {
+  background-color: #023038;
+}
+.DeckPage .cardsList.extraDeck {
+  background-color: #380228;
 }
 
 .BasicLineRechart, .ygoChart {
@@ -733,6 +762,18 @@
   transform: rotate(45deg);
 }
 
+.LoadingIcon.hidden {
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  animation: none;
+}
+.LoadingIcon.hidden .innerPart {
+  width: 0px;
+  height: 0px;
+  animation: none;
+}
+
 @keyframes loadingAnimationInnerPart {
   0% {
     border-bottom: solid #a130c4 8px;
@@ -764,6 +805,27 @@
     transform: rotate(360deg);
   }
 }
+.SimpleButton {
+  font-size: 1em;
+  font-family: inherit;
+  color: #eee;
+  padding: 10px;
+  margin: 10px;
+  background-color: #511963;
+  border: 3px solid #ba7dcc;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.SimpleButton:hover {
+  background-color: #8628a3;
+}
+
+.SimpleButton:active {
+  background-color: #a130c4;
+  outline: none;
+}
+
 body {
   width: 100vw;
   margin: 0;

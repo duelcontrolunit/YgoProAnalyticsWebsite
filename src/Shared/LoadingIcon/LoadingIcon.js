@@ -1,8 +1,9 @@
 import React from 'react';
 
-const LoadingIcon = () => {
+const LoadingIcon = props => {
+    const classList = props.visible ? "LoadingIcon" : "LoadingIcon hidden";
     return ( 
-        <div className="LoadingIcon">
+        <div className={classList}>
             <div className="innerPart" />
         </div>
      );

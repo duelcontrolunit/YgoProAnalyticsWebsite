@@ -1,0 +1,20 @@
+.SimpleButton {
+    font-size: 1em;
+    font-family: inherit;
+    color: $light-text-color;
+    padding: 10px;
+    margin: 10px;
+    background-color: $primary-dark-color;
+    border: 3px solid $primary-light-color;
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+.SimpleButton:hover {
+    background-color: darken($primary-color,8);
+}
+.SimpleButton:active
+{
+    background-color: $primary-color;
+    outline: none;
+}

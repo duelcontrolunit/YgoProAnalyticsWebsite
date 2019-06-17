@@ -2,28 +2,48 @@ import React, { Component } from 'react';
 import SearchBar from '../../Shared/SearchBar/SearchBar';
 import SearchPanel from '../../Shared/SearchPanel/SearchPanel';
 import DeckResult from './DeckResult/DeckResult';
+import Axios from 'axios';
+import LoadingIcon from './../../Shared/LoadingIcon/LoadingIcon';
 
 class DeckList extends Component {
     state = { 
-        searchResult: [
-            {id: 1, name: "name1", proto: "very nice prototype", date: "2 april 2019", author: "niceGuy77"},
-            {id: 15,name: "name5", proto: "d", date: "4 september 2019", author: "niceGuy77"},
-            {id: 2,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
-            {id: 3,name: "name3", proto: "bbbbbbbbbb", date: "12 may 2019", author: "niceGuy77"},
-            {id: 5,name: "name5", proto: "d", date: "4 september 2019", author: "niceGuy77"},
-            {id: 4,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
-            {id: 6, name: "name1", proto: "very nice prototype", date: "2 april 2019", author: "niceGuy77"},
-            {id: 11, name: "name1", proto: "very nice prototype", date: "2 april 2019", author: "niceGuy77"},
-            {id: 10,name: "name5", proto: "d", date: "4 september 2019", author: "niceGuy77"},
-            {id: 7,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
-            {id: 8,name: "name3", proto: "bbbbbbbbbb", date: "12 may 2019", author: "niceGuy77"},
-            {id: 13,name: "name3", proto: "bbbbbbbbbb", date: "12 may 2019", author: "niceGuy77"},
-            {id: 9,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
-            {id: 12,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
-            {id: 14,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
-        ],
-        numberOfPages: 15
+        // searchResult: [
+        //     {id: 1, name: "name1", proto: "very nice prototype", date: "2 april 2019", author: "niceGuy77"},
+        //     {id: 15,name: "name5", proto: "d", date: "4 september 2019", author: "niceGuy77"},
+        //     {id: 2,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
+        //     {id: 3,name: "name3", proto: "bbbbbbbbbb", date: "12 may 2019", author: "niceGuy77"},
+        //     {id: 5,name: "name5", proto: "d", date: "4 september 2019", author: "niceGuy77"},
+        //     {id: 4,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
+        //     {id: 6, name: "name1", proto: "very nice prototype", date: "2 april 2019", author: "niceGuy77"},
+        //     {id: 11, name: "name1", proto: "very nice prototype", date: "2 april 2019", author: "niceGuy77"},
+        //     {id: 10,name: "name5", proto: "d", date: "4 september 2019", author: "niceGuy77"},
+        //     {id: 7,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
+        //     {id: 8,name: "name3", proto: "bbbbbbbbbb", date: "12 may 2019", author: "niceGuy77"},
+        //     {id: 13,name: "name3", proto: "bbbbbbbbbb", date: "12 may 2019", author: "niceGuy77"},
+        //     {id: 9,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
+        //     {id: 12,name: "name2", proto: "a", date: "6 april 2019", author: "niceGuy77"},
+        //     {id: 14,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
+        // ],
+        // numberOfPages: 15
+        decklistList: [],
+        numberOfPages: 0,
+        loadingDecklists: true
      }
+
+     componentDidMount() {
+        this.getDecklists(this.getPageNumber());
+     }
+
+    getDecklists(pageNumber) {
+        Axios.get("https://localhost:44326/api/decklist?minNumberOfGames=1&pageNumber=" + pageNumber)
+        .then(res => {
+            this.setState({
+               decklistList: res.data.decklistWithNumberOfGamesAndWins,
+               numberOfPages: res.data.totalNumberOfPages,
+               loadingDecklists: false
+            });
+        });
+    }
 
     inputChanged(event) {
         console.log(event.target.value);
@@ -39,11 +59,31 @@ class DeckList extends Component {
 
     getPageNumber() {
         if(!this.props.location.search) return 1;
-        else return Number(this.props.location.search.split('=')[1]);
+
+        const locationParameters = this.props.location.search.split('?');
+        const locationConcreteValues = [];
+        locationParameters.forEach(param => {
+            locationConcreteValues.push(param.split("="));
+        });
+        if(locationConcreteValues)
+        {
+            const pageParam= locationConcreteValues.find(el => {return el[0] === "page"});
+            if(pageParam) return Number(pageParam[1]);
+        }
+        return 1
+
+        // return Number(this.props.location.search.split('=')[pageStringIndex+1]);
+
+        // else return Number(this.props.location.search.split('=')[1]);
     }
 
     goToPage(page) {
         this.props.history.push("/decklist?page=" + page);
+        this.setState({
+            decklistList: [],
+            loadingDecklists: true
+        });
+        this.getDecklists(page);
     }
 
     render() { 
@@ -74,14 +114,18 @@ class DeckList extends Component {
         }
 
         let resultList = [];
-        this.state.searchResult.forEach((deck) => {
+        this.state.decklistList.forEach((deck) => {
+            const clearName = deck.name.split("_")[0];
+            const date = new Date(deck.whenDecklistWasFirstPlayed);
+            const clearDate = date.getDay() + "." + date.getMonth() + "." + date.getFullYear();
+
             resultList.push(<DeckResult
              key={deck.id}  
              clickHandler={() => {this.redirectToDecklist(deck.id)}}
-             name={deck.name}
-             proto={deck.proto}
-             date={deck.date}
-             author={deck.author}
+             name={clearName}
+             //proto={deck.proto}
+             date={clearDate}
+             //author={deck.author}
              />)            
         });
 
@@ -106,6 +150,7 @@ class DeckList extends Component {
                 </SearchPanel>
                 <div className="searchResult">
                     {resultList}
+                    <LoadingIcon visible={this.state.loadingDecklists} />
                     </div>
                 <div className="pagesList">{pagesList}</div>
             </div>
