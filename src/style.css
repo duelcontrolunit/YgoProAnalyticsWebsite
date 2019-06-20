@@ -826,6 +826,31 @@
   outline: none;
 }
 
+.SelectFromListField {
+  margin-top: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.SelectFromListField .options {
+  position: fixed;
+  box-sizing: border-box;
+  margin-top: 30px;
+  width: 200px;
+  background-color: #511963;
+}
+.SelectFromListField .options .option {
+  width: 100%;
+  margin-top: 1px;
+  padding: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.SelectFromListField .options .option:hover {
+  background-color: #a130c4;
+}
+
 body {
   width: 100vw;
   margin: 0;

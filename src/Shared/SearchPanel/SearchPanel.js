@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class SearchPanel extends Component {
     state = { 
-        contentState: ""
+        contentState: "active"
      }
 
     toggleContent() {

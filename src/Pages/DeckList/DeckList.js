@@ -4,6 +4,7 @@ import SearchPanel from '../../Shared/SearchPanel/SearchPanel';
 import DeckResult from './DeckResult/DeckResult';
 import Axios from 'axios';
 import LoadingIcon from './../../Shared/LoadingIcon/LoadingIcon';
+import SelectFromListField from '../../Shared/SelectFromListField/SelectFromListField';
 
 class DeckList extends Component {
     state = { 
@@ -25,6 +26,11 @@ class DeckList extends Component {
         //     {id: 14,name: "name4", proto: "cc cccc", date: "6 april 2019", author: "niceGuy77"},
         // ],
         // numberOfPages: 15
+
+
+        archetypesList: ["Velma","Cruz","Suarez","Lamb","Mccarty","Mcclain","Annie","Walls","Williams","Allyson","Ella","Christensen","Tammy","Woodard","Wilkinson","Jeri","Patti","Preston","Young","Mayo","Vera","Georgette","Saunders","Barrera","Corrine","Bruce","Woodward","Martina","Mcneil","Hull","Leah","Hattie","Hilary","Ferguson","Humphrey","Reyes","Tanya","Graves","Leslie","Watts","Goldie","Morris","Boyd","Hebert","Oliver","Goodman","Fitzpatrick","Brenda","Justine","Dena","Short","Casandra","Pam","Shaffer","Jones","Nell","Fitzgerald","Rosie","Pansy","Pollard","Crosby","Arlene","Eileen","Rosetta","Aisha","Natalie","Cherie","Celina","Foley","Tina","Page","Chasity","Wall","Jimmie","Leola","Estes","Helena","Ina","Larson","Margaret","Arnold","Cline","Sanford","Maritza","Phillips","Norman","Alexandra","Hale","Shannon","Hopper","Claudette","Oneal","Adele","Queen","Hughes","Beverley","Hooper","Holloway","Duffy","Becky","Key","Buckley","Rena","Clarissa","Lopez","Butler","Browning","Lynn","Carmen","Britt","Randi","Etta","Moses","Estelle","Wallace","Bernice","Sofia","Savage","Rosalind","Sophie","Durham","Susan","Latonya","Allison","Brandi","Cara","Crystal","Rocha","Mcdowell","Gilliam","Allison","Madge","Madden","Nannie","Bette","Kristen","Roslyn","Salazar","Cook","Roberts","Marion","Puckett","Jessie","Mejia","Tammie","Higgins","Gale","Jewell","Brennan","Sheri","Diane","James","Marta","Charlene","Marcia","Abby","Aida","Jo","Snider","Mcguire","Marisa","Jami","Hoover","Camille","Margery","Gracie","Miriam","Jamie","Bettie","Joanna","Wilma","Melton","Floyd","Mcbride","Robinson","Booth","Reilly","Genevieve","Mcmahon","Jennifer","Warren","Perry","Kari","Irene","Pugh","David","Greta","Traci","Isabelle","Grimes","Kenya","Dana","Beatrice","Araceli","Alison","Olson","Vaughan","Medina","Jacqueline","Laurel","Brittany","Penny","Small","Meghan","Viola","Howell","Crawford","Randolph","Giles","Russo","Kayla","Christian","Ochoa","Lessie","Wendy","Hannah","Watson","Soto","Hayden","Brady","Faulkner","Massey","Shawna","Wiggins","Merle","Huber","Perez","Angel","Lottie","Chan","Deloris","Gomez","Hendrix","Marsh","Mona","Talley","Latasha","Della","Irma","Ramos","Ericka","Marissa","Heather","Powell","Jefferson","Ramirez","Greer","Janet","Kelly","Schneider","Gibbs","Susanne","Mae","Herman","Cooper","Long","Beasley","Saundra","Blackburn","Harvey","Robles","Bryant","Julianne","Mabel","Brittney","Gail","Duran","Lauren","Chandler","Jacquelyn","Robertson","Harriet","Ginger","Reid","Campos","Sears","Kristi","Serrano","Jenifer","Nora","Nikki","Robert","Gaines","Terrie","Chase","Hanson","Malinda","Teri","Simon","Ellison","Cote","Morales","Collier","Selma","Mullen","Holder","Rutledge","Coleen","Moran","Le","Roberta","Chen"],
+
+
         decklistList: [],
         numberOfPages: 0,
         loadingDecklists: true
@@ -141,10 +147,11 @@ class DeckList extends Component {
                     <input type="range" />
                     <label>Prop4</label>
                     <input type="date" />
-                    <label>Prop5</label>
+                    {/* <label>Prop5</label>
                     <input type="text" />
                     <label>Prop6</label>
-                    <input type="text" />
+                    <input type="text" /> */}
+                    <SelectFromListField list={this.state.archetypesList} />
 
                     <button>Search</button>
                 </SearchPanel>
