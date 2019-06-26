@@ -24,6 +24,22 @@ class Header extends Component {
         {
             url: "/deck",
             name: "Deck"
+        },
+        {
+            url: "/archetypelist",
+            name: "Archetypes"
+        },
+        {
+            url: "/banlists",
+            name: "Banlists"
+        }   ,
+        {
+            url: "/banlist",
+            name: "Banlist"
+        }   ,
+        {
+            url: "/archetype",
+            name: "Archetype"
         }        
     ];
 

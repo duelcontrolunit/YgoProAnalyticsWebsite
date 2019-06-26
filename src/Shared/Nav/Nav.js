@@ -24,8 +24,10 @@ class Nav extends Component {
             <div className={"Nav " + (this.state.navCollapsed ? "collapsed" : "")}>
                 <NavButton clickHandler={() => {this.toggleNavBar()}} ><i className="fas fa-bars"></i></NavButton>
 
-                <NavButton clickHandler={() => {this.navBtnClick("/")}} >Main Page</NavButton>
+                {/* <NavButton clickHandler={() => {this.navBtnClick("/")}} >Main Page</NavButton> */}
                 <NavButton clickHandler={() => {this.navBtnClick("/decklist")}} >Decklist</NavButton>
+                <NavButton clickHandler={() => {this.navBtnClick("/archetypelist")}} >Archetypes</NavButton>                
+                <NavButton clickHandler={() => {this.navBtnClick("/banlists")}} >Banlists</NavButton>                
                 <NavButton clickHandler={() => {this.navBtnClick("/stats")}} >Statistics</NavButton>
                 <NavButton clickHandler={() => {this.navBtnClick("/contact")}} >Contact</NavButton>                
             </div>

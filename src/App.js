@@ -11,6 +11,8 @@ import DiscordButton from './Shared/DiscordButton/DiscordButton';
 import DonateButton from './Shared/DonateButton/DonateButton';
 import DeckPage from './Pages/DeckPage/DeckPage';
 import DeckList from './Pages/DeckList/DeckList';
+import ArchetypeList from './Pages/ArchetypeList/ArchetypeList';
+import ArchetypePage from './Pages/ArchetypePage/ArchetypePage';
 
 class App extends Component {
   state = {
@@ -31,6 +33,8 @@ class App extends Component {
           <Route path="/stats" exact component={Statistics} />
           <Route path="/decklist" exact component={DeckList} />
           <Route path="/deck" component={DeckPage} />
+          <Route path="/archetypelist" exact component={ArchetypeList} />
+          <Route path="/archetype" component={ArchetypePage} />
           </PageContainer>
         </div>
       </BrowserRouter>
