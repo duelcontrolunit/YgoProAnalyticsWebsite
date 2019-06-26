@@ -7,20 +7,21 @@ class SelectFromListField extends Component {
         fieldFocused: false
      }
 
+     
+
     optionsFromList(event) {
+        console.log(event.target.value);
         let newHintsList = [];
         for (let i = 0; i < this.props.list.length; i++) {
-            if(this.props.list[i].toLowerCase().includes(event.target.value))
+            if(this.props.list[i].toLowerCase().includes(event.target.value.toLowerCase()))
                 newHintsList.push(this.props.list[i]);
             if(newHintsList.length >= 5) break;
-            
         }
-
         this.setState({
             hintsList: newHintsList,
             inputValue: event.target.value
         });
-
+        // this.props.archetypeValueChanger(event.target.value);
     }
 
     selectOption(optionValue) {
@@ -29,6 +30,7 @@ class SelectFromListField extends Component {
     }
 
     render() { 
+        this.props.valueChanger(this.state.inputValue);
         let hints = [];
 
         if(this.state.fieldFocused)
@@ -38,10 +40,12 @@ class SelectFromListField extends Component {
 
         return ( 
             <div className="SelectFromListField"
-            onChange={(ev) => {this.optionsFromList(ev)}} 
             onFocus={() => {this.setState({fieldFocused: true})}}
             onBlur={() => setTimeout(() => {this.setState({ fieldFocused: false})}, 200)}>
-                <input value={this.state.inputValue} />
+                <input 
+                value={this.state.inputValue}
+                onChange={(ev) => {this.optionsFromList(ev)}} 
+                 />
                 <div className="options">
                     {hints}
                 </div>

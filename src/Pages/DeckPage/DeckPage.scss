@@ -72,6 +72,13 @@
                         cursor: pointer;
                         border-radius: 10px;
 
+                        i {
+                            font-size: 0.7em;
+                            border-radius: 8px;
+                            padding: 4px;
+                            margin-right: 5px;
+                            background-color: rgba(34, 0, 112, 0.644)
+                        }
                     }
                     .card:hover {
                         background-color: rgba(255, 255, 255, 0.1);
@@ -88,11 +95,9 @@
 
             tr:nth-child(odd) {
                 background-color: rgba(255, 255, 255, 0.18);
-
             }
             tr:nth-child(even) {
                 background-color: rgba(255, 255, 255, 0.1);
-
             }
         }
     }
@@ -107,6 +112,5 @@
 
     .cardsList.extraDeck {
         background-color: #380228;
-    }
-    
+    }    
 }

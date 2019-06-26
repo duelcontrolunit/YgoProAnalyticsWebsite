@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import BasicLineRechart from './../../Shared/Recharts/BasicLineRechart';
-// import BasicRadarChart from "../../Shared/Recharts/BasicRadarChart";
 import StackedBarChart from './../../Shared/Recharts/StackedBarChart';
 import Axios from 'axios';
 import LoadingIcon from "../../Shared/LoadingIcon/LoadingIcon";
@@ -8,66 +6,6 @@ import SimpleButton from "../../Shared/SimpleButton/SimpleButton";
 
 class DeckPage extends Component {
   state = {
-    // deckInfo: {
-    //   name: "Deck Cool Name",
-    //   type: "Interesting Type",
-    //   master: "Master player",
-    //   submissionDate: "1 april 2019",
-    //   author: "niceGuyWithProperNickname"
-    // },
-    // cardsList: {
-    //     monsters: ["Ricardo","Big chungus","Dat boi"],
-    //     spells: ["random spell", "spell 2"],
-    //     traps: ["lorem", "ipsum", "dolor"],
-    //     extra: ["qwerty", "uiop"],
-    //     side: ["no idea", "what to write"]
-    // },
-    // popularityOnTime: [
-    //   {time: "april 23", popularity: 2},
-    //   {time: "april 24", popularity: 3},
-    //   {time: "april 25", popularity: 5},
-    //   {time: "april 26", popularity: 8},
-    //   {time: "april 27", popularity: 5},
-    //   {time: "april 28", popularity: 6},
-    //   {time: "april 29", popularity: 5},
-    // ],
-    // radarChartData: [
-    //   {
-    //     "type": "Monsters",
-    //     "Maindeck": 90,
-    //     "Sidedeck": 50,
-    //     "fullMark": 100
-    //   },
-    //   {
-    //     "type": "Spells",
-    //     "Maindeck": 80,
-    //     "Sidedeck": 40,
-    //     "fullMark": 100
-    //   },
-    //   {
-    //     "type": "Traps",
-    //     "Maindeck": 70,
-    //     "Sidedeck": 60,
-    //     "fullMark": 100
-    //   },
-    //   {
-    //     "type": "Extra",
-    //     "Maindeck": 40,
-    //     "Sidedeck": 80,
-    //     "fullMark": 100
-    //   }
-    // ],
-    // deckWinRatio: [
-    //   {date: "april 24", loses: 4, wins: 4},
-    //   {date: "april 23", loses: 5, wins: 2},
-    //   {date: "april 25", loses: 0, wins: 5},
-    //   {date: "april 26", loses: 1, wins: 7},
-    //   {date: "april 27", loses: 2, wins: 8},
-    //   {date: "april 28", loses: 8, wins: 4},
-    //   {date: "april 29", loses: 2, wins: 2},
-    // ]
-
-
     deck: {
       decklistId: 0,
       name: "Loading...",
@@ -76,7 +14,9 @@ class DeckPage extends Component {
       sideDeck: {},
       extraDeck: {},
       statistics: [],
-      firstPlayed: ""
+      firstPlayed: "",
+      gamesTotal: 0,
+      gamesWon: 0
     },
     deckLoaded: false,
     deckNotFound: false
@@ -86,10 +26,8 @@ class DeckPage extends Component {
     Axios.get("https://localhost:44326/api/decklist/" + this.props.location.search.split('=')[1]
     )
     .then(res => {
-      console.log(res);
-      console.log(this.state);
-
-
+      let gamesTotal = 0;
+      let gamesWon = 0;  
 
       let newDeckState = {
         decklistId: res.data.decklistId,
@@ -100,6 +38,8 @@ class DeckPage extends Component {
         extraDeck: res.data.extraDeck,
 
         statistics: res.data.statistics.map(el => {
+          gamesTotal += el.numberOfTimesWhenDeckWasUsed;
+          gamesWon += el.numberOfTimesWhenDeckWon;
           return {
             date: this.prettifyDate(el.dateWhenDeckWasUsed),
             loses: el.numberOfTimesWhenDeckWasUsed - el.numberOfTimesWhenDeckWon,
@@ -107,24 +47,22 @@ class DeckPage extends Component {
           }
         }),
 
+        gamesTotal: gamesTotal,
+        gamesWon: gamesWon,
         firstPlayed: this.prettifyDate(res.data.whenDeckWasFirstPlayed)
       }
-
       this.setState({
         deck: newDeckState,
         deckLoaded: true,
         deckNotFound: false
       })
-      console.log(this.state);
 
     },() => {
-      console.log("zesrane");
       this.setState({
         deckLoaded: true,
         deckNotFound: true
       });
-    });
-    
+    });    
   }
 
   prettifyDate(dateString) {
@@ -136,14 +74,6 @@ class DeckPage extends Component {
     if(!this.props.location.search)
         this.props.history.push("/decklist");
   }
-
-  // writeCardsArray(array) {
-  //     let jsxArray =[];
-  //     array.forEach(el => {
-  //       jsxArray.push((<div className="card" key={el}>{el}</div>));
-  //     });
-  //     return(jsxArray);
-  // }
 
   //changes string like "loremIpsumDolor" into "Lorem Ipsum Dolor" (adds spaces and makes first letter uppercased)
   prietifyCardTypeString(inputString) {
@@ -163,12 +93,15 @@ class DeckPage extends Component {
     Object.keys(deck).forEach((type,i) => {
       let cards = [];
       let duplicateCounter = 1;//counting if there are duplicates on cecklist
-      deck[type].forEach((el,j,arr) => {
-        if(arr[j+1] && arr[j+1].name === el.name) duplicateCounter++;//checks if next card is duplicate of the current
+      deck[type].forEach((card,j,subDeckArray) => {
+        if(subDeckArray[j+1] && subDeckArray[j+1].name === card.name) duplicateCounter++;//checks if next card is duplicate of the current
         else {
           //if there are duplicated card it will print them as single one with multiplication sign 
-          const cardName = duplicateCounter > 1 ? el.name + " x " + duplicateCounter : el.name;
-          cards.push(<div className="card" key={i + "-" + j}>{cardName}</div>);
+          const cardName = duplicateCounter > 1 ? card.name + " x " + duplicateCounter : card.name;
+          //if card's passcode lenght has 9 digits, then adds beta icon next to card name
+          const betaIcon = []
+          if(card.passCode.toString().length === 9) betaIcon.push(<i key="beta" className="fas fa-bold"></i>);
+          cards.push(<div className="card" key={i + "-" + j}>{betaIcon}{cardName}</div>);
           duplicateCounter = 1;
         }
       });
@@ -183,7 +116,6 @@ class DeckPage extends Component {
   }
 
   goToPreviousPage() {
-    console.log(this.props);
     this.props.history.goBack();
   }
 
@@ -194,7 +126,6 @@ class DeckPage extends Component {
     const sideDeckContent = this.createCardsTable(this.state.deck.sideDeck);
     const extraDeckContent = this.createCardsTable(this.state.deck.extraDeck);
 
-    console.log(sideDeckContent);
     const mainDeckTable = mainDeckContent.length ? (
       <table className="cardsList mainDeck">
             <thead><tr><td colSpan="2">Main Deck</td></tr></thead>
@@ -250,67 +181,23 @@ class DeckPage extends Component {
                 <th>First played</th>
                 <th>{this.state.deck.firstPlayed}</th>
               </tr>
+              <tr>
+                <th>Games total</th>
+                <th>{this.state.deck.gamesTotal}</th>
+              </tr>
+              <tr>
+                <th>Games Won</th>
+                <th>{this.state.deck.gamesWon}</th>
+              </tr>
             </tbody>
           </table>
 
-          {/* <BasicLineRechart data={this.state.popularityOnTime} dataKeyName="time" dataName="popularity" >Deck popularity</BasicLineRechart>
-
-          <BasicRadarChart data={this.state.radarChartData} dataKeyName="type" domainValue={[0,100]} specificDataKeyNames={["Maindeck","Sidedeck"]} >Cool data</BasicRadarChart>
-
-          */}
-          {/* <img src="https://ygoprodeck.com/pics/46986414.jpg" alt="ygoCard" /> */}
           <StackedBarChart data={this.state.deck.statistics} dataKeyName="date" specificDataKeyNames={["wins","loses"]}>Deck win ratio</StackedBarChart>
 
           {mainDeckTable}
           {sideDeckTable}
           {extraDeckTable}
 
-
-          {/* <table className="cardsList mainDeck">
-            <thead><tr><td colSpan="2">Main Deck</td></tr></thead>
-            <tbody>
-              {mainDeckContent}
-            </tbody>
-          </table> */}
-
-          {/* <table className="cardsList sideDeck">
-          <thead><tr><td colSpan="2">Side Deck</td></tr></thead>
-            <tbody>
-              {sideDeckContent}
-            </tbody>
-          </table>
-
-          <table className="cardsList extraDeck">
-            <thead><tr><td colSpan="2">Extra Deck</td></tr></thead>
-            <tbody>
-              {extraDeckContent}
-            </tbody>
-          </table> */}
-
-          {/* <table className="cardsList">
-              <tbody>
-                  <tr className="monsters">
-                      <th>Monsters</th>
-                      <th>{this.writeCardsArray(this.state.cardsList.monsters)}</th>
-                  </tr>
-                  <tr className="spells">
-                      <th>Spells</th>
-                      <th>{this.writeCardsArray(this.state.cardsList.spells)}</th>
-                  </tr>
-                  <tr className="traps">
-                      <th>Traps</th>
-                      <th>{this.writeCardsArray(this.state.cardsList.traps)}</th>
-                  </tr>
-                  <tr className="extra">
-                      <th>Extra</th>
-                      <th>{this.writeCardsArray(this.state.cardsList.extra)}</th>
-                  </tr>
-                  <tr className="side">
-                      <th>Side</th>
-                      <th>{this.writeCardsArray(this.state.cardsList.side)}</th>
-                  </tr>
-              </tbody>
-          </table> */}
         </div>
       );
   }
