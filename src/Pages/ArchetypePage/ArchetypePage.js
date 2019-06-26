@@ -22,7 +22,6 @@ class ArchetypePage extends Component {
     Axios.get("https://localhost:44326/api/archetype/" + this.props.location.search.split('=')[1]
     )
     .then(res => {
-        console.log(res);
       let gamesTotal = 0;
       let gamesWon = 0;  
 
