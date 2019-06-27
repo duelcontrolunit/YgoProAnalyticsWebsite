@@ -17,7 +17,6 @@ class BanlistList extends Component {
 
     searchParametersFromLocation() {
         const locParam = this.getLoactionParameters();
-
         Object.keys(locParam).forEach(param => {
             this.searchParameters[param] = locParam[param];
         });
@@ -79,6 +78,7 @@ class BanlistList extends Component {
         {
             return Number(locationParameters.pageNumber);
         }
+
         return 1
     }
 
@@ -90,6 +90,7 @@ class BanlistList extends Component {
             if(nameAndValue[0])
                 locationConcreteValues[nameAndValue[0]] = nameAndValue[1];
         });
+
         return locationConcreteValues;
     }
 
@@ -115,7 +116,7 @@ class BanlistList extends Component {
         for (let i = 1; i <= this.state.numberOfPages; i++) {
             let classList = i === currentPage ? "pageNumber currentPage" : "pageNumber"
 
-            if(i+1 > currentPage + pagesOnSidesOfResult) {
+            if(i + 1 > currentPage + pagesOnSidesOfResult) {
                 if(i < this.state.numberOfPages) 
                     pagesList.push(<i className="fas fa-ellipsis-h" key="dots2" />);
                 i = this.state.numberOfPages;
@@ -133,7 +134,7 @@ class BanlistList extends Component {
                 </div>
             );
             
-            if(i-1 < currentPage - pagesOnSidesOfResult - 1) {
+            if(i - 1 < currentPage - pagesOnSidesOfResult - 1) {
                 pagesList.push(<i className="fas fa-ellipsis-h" key="dots1" />);
                 i = currentPage - pagesOnSidesOfResult;
             }                

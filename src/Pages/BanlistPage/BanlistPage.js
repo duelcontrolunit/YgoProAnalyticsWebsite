@@ -38,6 +38,7 @@ class BanlistPage extends Component {
 
         statistics: res.data.statistics.map(el => {
           gamesTotal += el.howManyTimesWasUsed;
+
           return {
             date: this.prettifyDate(el.fromDate),
             uses: el.howManyTimesWasUsed
@@ -64,6 +65,7 @@ class BanlistPage extends Component {
 
   prettifyDate(dateString) {
     const date = new Date(dateString);
+
     return date.getDay() + "." + date.getMonth() + "." + date.getFullYear()
   }
 
@@ -79,6 +81,7 @@ class BanlistPage extends Component {
       if(inputString[i] === inputString[i].toUpperCase()) newString += " ";
       newString += inputString[i];
     }
+
     return newString;
   }
 
@@ -109,6 +112,7 @@ class BanlistPage extends Component {
         cardTable.push(<tr key={type}>{row}</tr>);
       }
     });
+    
     return cardTable;
   }
 
