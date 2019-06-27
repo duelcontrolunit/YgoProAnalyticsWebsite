@@ -43,7 +43,7 @@ class MainPage extends Component {
                     date: el.fromDate.split("T")[0].replace("-",".").replace("-","."),
                     numberOfGames: el.numberOfGames
                 }
-            });
+            }).reverse();
             this.setState({usersOnServerData: newData});
         });
     }
