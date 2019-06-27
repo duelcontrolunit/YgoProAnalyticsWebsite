@@ -54,6 +54,10 @@
         width: auto;
         max-width: 0px;
         transition: 1s ease;
+
+        label {
+            white-space: nowrap;
+        }
     
         input {    
             background-color: $primary-color;
