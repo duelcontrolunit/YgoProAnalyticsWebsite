@@ -295,27 +295,36 @@
 }
 .DeckList .resultsOnPage {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-end;
-  width: 90%;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
 }
 .DeckList .resultsOnPage .desc {
   font-size: 0.8em;
   opacity: 0.6;
+  margin-right: 5%;
 }
-.DeckList .resultsOnPage .option {
+.DeckList .resultsOnPage .options {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px;
+  width: 100%;
+}
+.DeckList .resultsOnPage .options .option {
   margin-right: 2%;
   margin-left: 2%;
   opacity: 0.6;
   font-size: 0.9em;
   cursor: pointer;
 }
-.DeckList .resultsOnPage .option:hover {
+.DeckList .resultsOnPage .options .option:hover {
   opacity: 0.8;
   transform: scale(1.05);
 }
-.DeckList .resultsOnPage .option.active {
+.DeckList .resultsOnPage .options .option.active {
   opacity: 1;
   text-decoration: underline;
 }
@@ -361,7 +370,7 @@
 .DeckPage .deckName {
   font-size: 2.2em;
   margin: 10px;
-  width: 80%;
+  width: 100%;
   text-align: center;
 }
 .DeckPage .info {
@@ -458,27 +467,36 @@
 }
 .ArchetypeList .resultsOnPage {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-end;
-  width: 90%;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
 }
 .ArchetypeList .resultsOnPage .desc {
   font-size: 0.8em;
   opacity: 0.6;
+  margin-right: 5%;
 }
-.ArchetypeList .resultsOnPage .option {
+.ArchetypeList .resultsOnPage .options {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px;
+  width: 100%;
+}
+.ArchetypeList .resultsOnPage .options .option {
   margin-right: 2%;
   margin-left: 2%;
   opacity: 0.6;
   font-size: 0.9em;
   cursor: pointer;
 }
-.ArchetypeList .resultsOnPage .option:hover {
+.ArchetypeList .resultsOnPage .options .option:hover {
   opacity: 0.8;
   transform: scale(1.05);
 }
-.ArchetypeList .resultsOnPage .option.active {
+.ArchetypeList .resultsOnPage .options .option.active {
   opacity: 1;
   text-decoration: underline;
 }
@@ -610,7 +628,7 @@
 .ArchetypePage .name {
   font-size: 2.2em;
   margin: 10px;
-  width: 80%;
+  width: 100%;
   text-align: center;
 }
 .ArchetypePage .info {
@@ -680,6 +698,278 @@
 }
 .ArchetypePage .cardsList {
   background-color: #27212b;
+}
+
+.BanlistList {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 35px;
+}
+.BanlistList .searchResult {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 200px;
+  max-width: 1100px;
+  margin-top: 30px;
+}
+.BanlistList .resultsOnPage {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+.BanlistList .resultsOnPage .desc {
+  font-size: 0.8em;
+  opacity: 0.6;
+  margin-right: 5%;
+}
+.BanlistList .resultsOnPage .options {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px;
+  width: 100%;
+}
+.BanlistList .resultsOnPage .options .option {
+  margin-right: 2%;
+  margin-left: 2%;
+  opacity: 0.6;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.BanlistList .resultsOnPage .options .option:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.BanlistList .resultsOnPage .options .option.active {
+  opacity: 1;
+  text-decoration: underline;
+}
+.BanlistList .pagesList {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.BanlistList .pagesList .pageNumber {
+  background-color: #511963;
+  font-size: 1.2em;
+  text-align: center;
+  border: solid #72238c 1px;
+  border-radius: 2px;
+  margin: 3px;
+  padding: 6px;
+  min-width: 30px;
+  min-height: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.BanlistList .pagesList i {
+  margin: 4px;
+  font-size: 0.8em;
+}
+.BanlistList .pagesList .currentPage {
+  background-color: #a130c4;
+}
+
+.BanlistResult {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+  margin: 5px;
+  background-color: #511963;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  max-width: 150px;
+  min-height: 95px;
+  cursor: pointer;
+}
+.BanlistResult .name {
+  padding: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: 600;
+  background-color: #8328a0;
+  width: 100%;
+}
+.BanlistResult .date {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2px;
+  width: 100%;
+}
+.BanlistResult .date .desc {
+  opacity: 0.4;
+  font-size: 0.65em;
+}
+.BanlistResult .date .data {
+  padding: 2px;
+  font-size: 0.9em;
+}
+.BanlistResult .gamesWinData {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.BanlistResult .gamesWinData .games,
+.BanlistResult .gamesWinData .win {
+  flex: 1 1 30%;
+  padding: 2px;
+  justify-content: space-around;
+}
+.BanlistResult .gamesWinData .games .desc,
+.BanlistResult .gamesWinData .win .desc {
+  opacity: 0.6;
+  font-size: 0.7em;
+}
+.BanlistResult .gamesWinData .games .data,
+.BanlistResult .gamesWinData .win .data {
+  width: 100%;
+  font-size: 1em;
+}
+.BanlistResult .gamesWinData .win {
+  text-align: right;
+}
+
+.BanlistResult:hover {
+  background-color: #6c2184;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+}
+.BanlistResult:hover .name {
+  background-color: #942eb4;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.BanlistResult:hover .desc {
+  opacity: 0.9;
+}
+.BanlistResult:hover .gamesWinData .desc {
+  opacity: 0.9;
+}
+
+.BanlistResult:active {
+  background-color: #8629a4;
+}
+.BanlistResult:active .name {
+  background-color: #a433c9;
+}
+
+@media only screen and (max-width: 600px) {
+  .BanlistResult {
+    font-size: 0.9em;
+    max-width: 60px;
+    min-height: 70px;
+  }
+}
+.Banlist {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+}
+.Banlist div {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.Banlist .banlistName {
+  font-size: 2.2em;
+  margin: 10px;
+  width: 100%;
+  text-align: center;
+}
+.Banlist .info {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-family: "Roboto", sans-serif;
+  color: #bbb;
+  margin: 5px;
+}
+.Banlist .info tr th {
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.Banlist .info tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.Banlist .info tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.Banlist .cardsList {
+  align-self: flex-start;
+  background-color: rgba(109, 209, 255, 0.2);
+  flex: 1 1 auto;
+  font-family: "Roboto", sans-serif;
+  color: #bbb;
+  margin: 25px;
+}
+.Banlist .cardsList thead {
+  height: 20px;
+  font-size: 1.4em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.Banlist .cardsList tBody tr th {
+  text-align: left;
+  font-size: 0.9em;
+  padding: 10px;
+  margin: 2px;
+}
+.Banlist .cardsList tBody tr th .card {
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.Banlist .cardsList tBody tr th .card i {
+  font-size: 0.7em;
+  border-radius: 8px;
+  padding: 4px;
+  margin-right: 5px;
+  background-color: rgba(34, 0, 112, 0.644);
+}
+.Banlist .cardsList tBody tr th .card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.Banlist .cardsList tBody tr th:nth-child(1) {
+  color: #ddd;
+}
+.Banlist .cardsList tBody tr th:nth-child(2) {
+  min-width: 20vw;
+}
+.Banlist .cardsList tBody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+.Banlist .cardsList tBody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.Banlist .cardsList.bannedCards {
+  background-color: #100238;
+}
+.Banlist .cardsList.limitedCards {
+  background-color: #023038;
+}
+.Banlist .cardsList.semiLimitedCards {
+  background-color: #380228;
 }
 
 .BasicLineRechart, .ygoChart {
@@ -1100,6 +1390,8 @@
 @media only screen and (max-width: 600px) {
   .DeckResult {
     font-size: 0.9em;
+    max-width: 60px;
+    min-height: 70px;
   }
 }
 .LoadingIcon {

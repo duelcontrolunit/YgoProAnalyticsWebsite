@@ -2,21 +2,17 @@ import React, { Component } from 'react';
 import SearchPanel from '../../Shared/SearchPanel/SearchPanel';
 import Axios from 'axios';
 import LoadingIcon from './../../Shared/LoadingIcon/LoadingIcon';
-import SelectFromListField from '../../Shared/SelectFromListField/SelectFromListField';
-import ArchetypeResult from './ArchetypeResult/ArchetypeResult';
+import BanlistResult from './BanlistResult/BanlistResult';
 
-class ArchetypeList extends Component {
+class BanlistList extends Component {
     state = { 
-        archetypesList: [],
-
-        archetypesResultList: [],
+        banlistResultList: [],
         numberOfPages: 0,
         loadingData: true,
         errorLoading: false,        
      }
 
     searchParameters = {
-        archetypeName: ""
     }
 
     searchParametersFromLocation() {
@@ -33,20 +29,19 @@ class ArchetypeList extends Component {
 
     componentDidMount() {
         this.getData();
-        this.getArchetypeList();
      }
 
     componentWillUnmount() {
-        clearTimeout(this.getArchetypeListTimeoutReference);
+        clearTimeout(this.getBanlistListTimeoutReference);
      }
 
-    getArchetypeListTimeoutReference = {};
+     getBanlistListTimeoutReference = {};
 
     getData() {
-        this.getArchetypeListTimeoutReference = setTimeout(() => {            
+        this.getBanlistListTimeoutReference = setTimeout(() => {            
             const locParam = this.getLoactionParameters();
 
-            let query = "https://localhost:44326/api/archetype";
+            let query = "https://localhost:44326/api/banlist";
 
             Object.keys(locParam).forEach((param,i) => {
                 if(locParam[param]) {
@@ -58,7 +53,7 @@ class ArchetypeList extends Component {
             Axios.get(query)
             .then(res => {
                 this.setState({
-                archetypesResultList: res.data.archetypes,
+                banlistResultList: res.data.banlists,
                 numberOfPages: res.data.totalNumberOfPages,
                 loadingData: false,
                 errorLoading: false
@@ -72,18 +67,8 @@ class ArchetypeList extends Component {
         }, 10);
     }
 
-    getArchetypeList() {
-        Axios.get("https://localhost:44326/api/Archetype")
-        .then(res => {
-            const archetypeNamesList = res.data.archetypes.map(el => {
-                return el.name;
-            });
-            this.setState({archetypesList: archetypeNamesList})
-        });
-    }
-
     redirectToArchetypePage(id) {
-        this.props.history.push("/archetype?id=" + id);
+        this.props.history.push("/banlist?id=" + id);
     }
 
     getPageNumber() {
@@ -109,9 +94,9 @@ class ArchetypeList extends Component {
     }
 
     newSearchPage() {
-        let newLocation = "/archetypelist";
+        let newLocation = "/banlistlist";
         this.setState({
-            archetypesResultList: [],
+            banlistResultList: [],
             loadingData: true,
             errorLoading: false
         });        
@@ -155,30 +140,32 @@ class ArchetypeList extends Component {
         }
 
         let resultList = [];
-        this.state.archetypesResultList.forEach((el) => {
+        this.state.banlistResultList.forEach((el) => {
+            const date = new Date(el.releaseDate);
+            const clearDate = date.getDay() + "." + date.getMonth() + "." + date.getFullYear();
 
-            resultList.push(<ArchetypeResult
+            resultList.push(<BanlistResult
              key={el.id}  
              clickHandler={() => {this.redirectToArchetypePage(el.id)}}
              name={el.name}
-             games={el.howManyWasUsed}
-             wins={el.howManyWon}
+             date={clearDate}
+             games={el.howManyTimeWasUsed}
              />);       
         });
 
         const resultsOnPage = this.getLoactionParameters().numberOfResults;
         if(this.state.errorLoading) resultList = (
             <div key="err" className="centredFlexContainer">
-                <h1>Error on loading list of archetypes :(</h1>
+                <h1>Error on loading list of banlists :(</h1>
             </div>
         );
-        else if (!this.state.loadingData && this.state.archetypesResultList.length === 0) resultList = (
+        else if (!this.state.loadingData && this.state.banlistResultList.length === 0) resultList = (
             <div key="err" className="centredFlexContainer">
                 <h1>No results were found :(</h1>
             </div>
         );
         return ( 
-            <div className="ArchetypeList">
+            <div className="BanlistList">
                 <div className="resultsOnPage">
                     <div className="desc">Results on page:</div>
                     <div className="options">
@@ -211,17 +198,15 @@ class ArchetypeList extends Component {
                 <SearchPanel>
                     <label>Minimum number of games</label>
                     <input type="number" min="0" onChange={event => {this.changeSearchParameter("minNumberOfGames", event.target.value)}} />
-
-                    <label>Archetype</label>
-                    <SelectFromListField 
-                    list={this.state.archetypesList} 
-                    valueChanger={value => {this.changeSearchParameter("archetypeName",value)}} />
                     
                     <label>From date</label>
                     <input type="date" onChange={event => {this.changeSearchParameter("statisticsFromDate",event.target.value)}}/>
                     
                     <label>To date</label>
                     <input type="date" onChange={event => {this.changeSearchParameter("StatisticsToDate",event.target.value)}}/>
+
+                    <label>Format or name</label>
+                    <input type="text" onChange={event => {this.changeSearchParameter("FormatOrName",event.target.value)}}/>
 
                     <button onClick={() => {
                         this.changeSearchParameter("pageNumber","1");
@@ -238,4 +223,4 @@ class ArchetypeList extends Component {
     }
 }
  
-export default ArchetypeList;
+export default BanlistList;

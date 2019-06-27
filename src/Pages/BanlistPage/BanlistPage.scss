@@ -1,4 +1,4 @@
-.ArchetypePage {
+.Banlist {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -11,7 +11,7 @@
         margin-right: 20px;
     }
 
-    .name {
+    .banlistName {
         font-size: 2.2em;
         margin: 10px;
         width: 100%;
@@ -102,7 +102,15 @@
         }
     }
 
-    .cardsList {
-        background-color: #27212b;
-    }  
+    .cardsList.bannedCards {
+        background-color: #100238;
+    }
+
+    .cardsList.limitedCards {
+        background-color: #023038;
+    }
+
+    .cardsList.semiLimitedCards {
+        background-color: #380228;
+    }    
 }

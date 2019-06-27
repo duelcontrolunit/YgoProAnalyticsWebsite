@@ -21,34 +21,46 @@
 
     .resultsOnPage {
         display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        justify-content: flex-end;
+        flex-flow: column nowrap;
+        align-items: flex-end;
+        justify-content: center;
 
-        width: 90%;
+        width: 100%;
 
         .desc {
             font-size: 0.8em;
             opacity: 0.6;
+            margin-right: 5%;
         }
 
-        .option {
-            margin-right: 2%;
-            margin-left: 2%;
-            opacity: 0.6;
-            font-size: 0.9em;
+        .options {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: flex-end;
 
-            cursor: pointer;
-        }
+            padding: 4px;
+            width: 100%;
 
-        .option:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
-        }
+            .option {
+                margin-right: 2%;
+                margin-left: 2%;
+                opacity: 0.6;
+                font-size: 0.9em;
 
-        .option.active {
-            opacity: 1;
-            text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .option:hover {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+
+            .option.active {
+                opacity: 1;
+                text-decoration: underline;
+            }
+
         }
     }
 
