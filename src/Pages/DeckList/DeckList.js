@@ -105,6 +105,7 @@ class DeckList extends Component {
             if(nameAndValue[0])
                 locationConcreteValues[nameAndValue[0]] = nameAndValue[1];
         });
+        
         return locationConcreteValues;
     }
 

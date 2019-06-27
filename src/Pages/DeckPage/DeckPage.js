@@ -82,6 +82,7 @@ class DeckPage extends Component {
       if(inputString[i] === inputString[i].toUpperCase()) newString += " ";
       newString += inputString[i];
     }
+
     return newString;
   }
 
@@ -112,6 +113,7 @@ class DeckPage extends Component {
         cardTable.push(<tr key={type}>{row}</tr>);
       }
     });
+    
     return cardTable;
   }
 
