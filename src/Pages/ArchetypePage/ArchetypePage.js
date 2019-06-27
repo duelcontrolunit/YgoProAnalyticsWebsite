@@ -118,7 +118,6 @@ class ArchetypePage extends Component {
     this.checkIfProperDeckId();
 
     const cardsListContent = this.createCardsTable(this.state.data.cardsList);
-
     const cardsListTable = cardsListContent.length ? (
       <table className="cardsList">
             <thead><tr><td colSpan="2">Cards in Archetype</td></tr></thead>
