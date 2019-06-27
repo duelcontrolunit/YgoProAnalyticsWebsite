@@ -10,6 +10,21 @@
     }
 }
 
+.LoadingIcon.hidden {
+    opacity: 0;
+
+    width: 0px;
+    height: 0px;
+    animation: none;
+
+    .innerPart {
+        width: 0px;
+        height: 0px;
+
+        animation: none;
+    }
+}
+
 @keyframes loadingAnimationInnerPart {
     0% {border-bottom: solid $primary-color 8px;}
     25% {border-left: solid $primary-color 8px;}

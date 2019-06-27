@@ -21,13 +21,14 @@
   justify-content: center;
   width: 100%;
   color: #eee;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
   z-index: 20;
 }
 .Header .headerBg {
+  align-self: flex-start;
   width: 100%;
   height: 200px;
   background-color: #471054;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
 }
 .Header .pageName {
   position: absolute;
@@ -237,8 +238,7 @@
   flex-flow: column wrap;
   align-items: stretch;
   justify-content: stretch;
-  background-color: #2d0238;
-  padding: 10px;
+  padding: 20px;
   padding-top: 100px;
   box-sizing: border-box;
 }
@@ -257,6 +257,8 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  padding-left: 30px;
+  padding-right: 35px;
 }
 .DeckList .searchResult {
   display: flex;
@@ -264,7 +266,34 @@
   justify-content: space-around;
   align-items: center;
   min-height: 200px;
+  max-width: 1100px;
   margin-top: 30px;
+}
+.DeckList .resultsOnPage {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  width: 90%;
+}
+.DeckList .resultsOnPage .desc {
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+.DeckList .resultsOnPage .option {
+  margin-right: 2%;
+  margin-left: 2%;
+  opacity: 0.6;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.DeckList .resultsOnPage .option:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.DeckList .resultsOnPage .option.active {
+  opacity: 1;
+  text-decoration: underline;
 }
 .DeckList .pagesList {
   display: flex;
@@ -299,6 +328,11 @@
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  min-height: 250px;
+}
+.DeckPage div {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .DeckPage .deckName {
   font-size: 2.2em;
@@ -324,32 +358,61 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 .DeckPage .cardsList {
+  align-self: flex-start;
   background-color: rgba(109, 209, 255, 0.2);
+  flex: 1 1 auto;
   font-family: "Roboto", sans-serif;
   color: #bbb;
   margin: 25px;
 }
-.DeckPage .cardsList tr th {
+.DeckPage .cardsList thead {
+  height: 20px;
+  font-size: 1.4em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.DeckPage .cardsList tBody tr th {
   text-align: left;
+  font-size: 0.9em;
   padding: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
   margin: 2px;
 }
-.DeckPage .cardsList tr th .card {
-  margin: 1px;
+.DeckPage .cardsList tBody tr th .card {
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 10px;
 }
-.DeckPage .cardsList tr th:nth-child(1) {
+.DeckPage .cardsList tBody tr th .card i {
+  font-size: 0.7em;
+  border-radius: 8px;
+  padding: 4px;
+  margin-right: 5px;
+  background-color: rgba(34, 0, 112, 0.644);
+}
+.DeckPage .cardsList tBody tr th .card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.DeckPage .cardsList tBody tr th:nth-child(1) {
   color: #ddd;
 }
-.DeckPage .cardsList tr th:nth-child(2) {
+.DeckPage .cardsList tBody tr th:nth-child(2) {
   min-width: 20vw;
 }
-.DeckPage .cardsList tr:nth-child(odd) {
-  background-color: rgba(109, 209, 255, 0.2);
+.DeckPage .cardsList tBody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.18);
 }
-.DeckPage .cardsList tr:nth-child(even) {
-  background-color: rgba(109, 209, 255, 0.1);
+.DeckPage .cardsList tBody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.DeckPage .cardsList.mainDeck {
+  background-color: #100238;
+}
+.DeckPage .cardsList.sideDeck {
+  background-color: #023038;
+}
+.DeckPage .cardsList.extraDeck {
+  background-color: #380228;
 }
 
 .BasicLineRechart, .ygoChart {
@@ -678,36 +741,86 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-between;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
   margin: 5px;
   background-color: #511963;
-  border-radius: 10px;
+  padding: 5px;
+  padding-top: 0px;
   padding-bottom: 5px;
+  max-width: 150px;
+  min-height: 105px;
   cursor: pointer;
 }
-.DeckResult .info {
-  padding: 3px;
-  margin: 2px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 .DeckResult .name {
-  padding: 0px;
+  padding: 5px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin: 0px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  text-overflow: ellipsis;
   text-align: center;
   font-weight: 600;
   background-color: #8328a0;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   width: 100%;
+}
+.DeckResult .date {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2px;
+  width: 100%;
+}
+.DeckResult .date .desc {
+  opacity: 0.4;
+  font-size: 0.65em;
+}
+.DeckResult .date .data {
+  padding: 2px;
+  font-size: 0.9em;
+}
+.DeckResult .gamesWinData {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.DeckResult .gamesWinData .games,
+.DeckResult .gamesWinData .win {
+  flex: 1 1 30%;
+  padding: 2px;
+  justify-content: space-around;
+}
+.DeckResult .gamesWinData .games .desc,
+.DeckResult .gamesWinData .win .desc {
+  opacity: 0.6;
+  font-size: 0.7em;
+}
+.DeckResult .gamesWinData .games .data,
+.DeckResult .gamesWinData .win .data {
+  width: 100%;
+  font-size: 1em;
+}
+.DeckResult .gamesWinData .win {
+  text-align: right;
 }
 
 .DeckResult:hover {
   background-color: #6c2184;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
 }
 .DeckResult:hover .name {
   background-color: #942eb4;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.DeckResult:hover .desc {
+  opacity: 0.9;
+}
+.DeckResult:hover .gamesWinData .desc {
+  opacity: 0.9;
 }
 
 .DeckResult:active {
@@ -731,6 +844,18 @@
   border: solid #a130c4 3px;
   animation: loadingAnimationInnerPart 0.5s infinite;
   transform: rotate(45deg);
+}
+
+.LoadingIcon.hidden {
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  animation: none;
+}
+.LoadingIcon.hidden .innerPart {
+  width: 0px;
+  height: 0px;
+  animation: none;
 }
 
 @keyframes loadingAnimationInnerPart {
@@ -764,6 +889,52 @@
     transform: rotate(360deg);
   }
 }
+.SimpleButton {
+  font-size: 1em;
+  font-family: inherit;
+  color: #eee;
+  padding: 10px;
+  margin: 10px;
+  background-color: #511963;
+  border: 3px solid #ba7dcc;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.SimpleButton:hover {
+  background-color: #8628a3;
+}
+
+.SimpleButton:active {
+  background-color: #a130c4;
+  outline: none;
+}
+
+.SelectFromListField {
+  margin-top: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.SelectFromListField .options {
+  position: fixed;
+  box-sizing: border-box;
+  margin-top: 30px;
+  width: 200px;
+  background-color: #511963;
+}
+.SelectFromListField .options .option {
+  width: 100%;
+  margin-top: 1px;
+  padding: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.SelectFromListField .options .option:hover {
+  background-color: #a130c4;
+}
+
 body {
   width: 100vw;
   margin: 0;
@@ -772,6 +943,10 @@ body {
   overflow-x: hidden;
   font-size: 18px;
   color: #eee;
+  background-image: url("./squareBg.svg");
+  background-repeat: repeat;
+  background-size: 40px;
+  background-color: #31023d;
 }
 body .App {
   display: flex;
