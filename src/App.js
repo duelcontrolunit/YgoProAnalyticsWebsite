@@ -6,7 +6,6 @@ import AboutPage from './Pages/About/About';
 import PageContainer from './Shared/PageContainer/PageContainer';
 import Nav from './Shared/Nav/Nav';
 import Header from './Shared/Header/Header';
-import Statistics from './Pages/Statisctics/Statistics';
 import DiscordButton from './Shared/DiscordButton/DiscordButton';
 import DonateButton from './Shared/DonateButton/DonateButton';
 import DeckPage from './Pages/DeckPage/DeckPage';
@@ -32,7 +31,6 @@ class App extends Component {
           <PageContainer pageName={this.state.currentPage}>
           <Route path="/" exact component={MainPage} />
           <Route path="/about" exact component={AboutPage} />
-          <Route path="/stats" exact component={Statistics} />
           <Route path="/decklist" exact component={DeckList} />
           <Route path="/deck" component={DeckPage} />
           <Route path="/archetypelist" exact component={ArchetypeList} />

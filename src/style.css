@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWe");
+@import url("https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWei&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Catamaran:500");
 .MainPage {
   display: flex;
@@ -286,6 +286,29 @@
     padding-top: 40px;
   }
 }
+.About {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.About .info {
+  padding: 20px;
+  font-size: 1.3em;
+  line-height: 1.3em;
+  max-width: 600px;
+  text-align: center;
+}
+.About .info .paragraph {
+  margin-bottom: 30px;
+}
+.About .info a {
+  color: #a130c4;
+}
+.About .info a:hover {
+  color: #ba7dcc;
+}
+
 .DeckList {
   display: flex;
   flex-flow: column wrap;
@@ -1161,6 +1184,8 @@
   cursor: pointer;
 }
 .Logo .svg {
+  position: absolute;
+  left: 0px;
   height: 100%;
 }
 .Logo .svg #topPart {
