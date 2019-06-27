@@ -4,22 +4,68 @@
     max-width: 80vw;
 }
 
-.NumberDataDisplay
+.NumberDataDisplay,
+.StatusDataDisplay
 {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+    align-items: center;
     
     box-sizing: border-box;
-    padding: 30px;
+    padding: 15px;
     max-width: 400px;
 
     text-align: center;
 
-    .data
-    {
-        font-size: 3em;
-        text-align: center;
+    .description {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .dataContainer {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+
+        padding: 10px;
+        width: 45px;
+        height: 45px;
+        transform: rotate(45deg);
+
+        background-color: $primary-dark-color;
+
+        .data
+        {
+            font-size: 1.9em;
+            text-align: center;
+
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.StatusDataDisplay {
+    width: 100%;
+    .dataContainer {
+        width: 60px;
+        height: 60px;
+
+        .data {
+            font-size: 1.3em;
+        }
+    }
+}
+
+.StatusDataDisplay.true {
+    .dataContainer {
+        background-color: rgb(33, 117, 33);
+    }
+}
+
+.StatusDataDisplay.false {
+    .dataContainer {
+        background-color: rgb(109, 0, 0);
     }
 }
 
@@ -28,5 +74,19 @@
     .BasicLineRechart {
         width: 100%;
         min-width: 100px;
+    }
+
+    .NumberDataDisplay {
+        .dataContainer {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .StatusDataDisplay {
+        .dataContainer {
+            width: 45px;
+            height: 45px;
+        }
     }
 }
