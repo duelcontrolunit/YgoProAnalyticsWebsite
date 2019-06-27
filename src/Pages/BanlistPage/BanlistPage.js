@@ -64,9 +64,7 @@ class BanlistPage extends Component {
   }
 
   prettifyDate(dateString) {
-    const date = new Date(dateString);
-
-    return date.getDay() + "." + date.getMonth() + "." + date.getFullYear()
+     return dateString ? dateString.split("T")[0].replace("-",".").replace("-",".") : "";
   }
 
   checkIfProperDeckId() {
@@ -112,7 +110,7 @@ class BanlistPage extends Component {
         cardTable.push(<tr key={type}>{row}</tr>);
       }
     });
-    
+
     return cardTable;
   }
 

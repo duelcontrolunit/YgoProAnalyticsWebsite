@@ -14,7 +14,7 @@
     .name {
         font-size: 2.2em;
         margin: 10px;
-        width: 100%;
+        width: 85%;
         text-align: center;
     }
 
@@ -24,6 +24,7 @@
         font-family: "Roboto", sans-serif;
         color: #bbb;
         margin: 5px;
+        min-width: 300px;
 
         tr {
             th {

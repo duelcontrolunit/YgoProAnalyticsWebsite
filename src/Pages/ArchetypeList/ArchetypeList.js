@@ -222,6 +222,18 @@ class ArchetypeList extends Component {
                     <label>To date</label>
                     <input type="date" onChange={event => {this.changeSearchParameter("StatisticsToDate",event.target.value)}}/>
 
+                    <label>Sort by games won
+                    <input type="radio" name="orderByGames" onChange={event => {
+                        this.changeSearchParameter("orderByDescendingByNumberOfGames","false")
+                        }}/>
+                    </label>
+
+                    <label>Sort by number of games
+                    <input type="radio" name="orderByGames" onChange={event => {
+                        this.changeSearchParameter("orderByDescendingByNumberOfGames","true")
+                        }}/>
+                    </label>
+                    
                     <button onClick={() => {
                         this.changeSearchParameter("pageNumber","1");
                         this.newSearchPage();

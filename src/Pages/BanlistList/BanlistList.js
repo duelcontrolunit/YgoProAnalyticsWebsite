@@ -141,8 +141,7 @@ class BanlistList extends Component {
 
         let resultList = [];
         this.state.banlistResultList.forEach((el) => {
-            const date = new Date(el.releaseDate);
-            const clearDate = date.getDay() + "." + date.getMonth() + "." + date.getFullYear();
+            const clearDate = el.releaseDate.split("T")[0].replace("-",".").replace("-",".");
 
             resultList.push(<BanlistResult
              key={el.id}  

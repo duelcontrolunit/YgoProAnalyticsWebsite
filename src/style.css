@@ -370,7 +370,7 @@
 .DeckPage .deckName {
   font-size: 2.2em;
   margin: 10px;
-  width: 100%;
+  width: 80%;
   text-align: center;
 }
 .DeckPage .info {
@@ -393,7 +393,7 @@
 .DeckPage .cardsList {
   align-self: flex-start;
   background-color: rgba(109, 209, 255, 0.2);
-  flex: 1 1 auto;
+  flex: 1 1 80%;
   font-family: "Roboto", sans-serif;
   color: #bbb;
   margin: 25px;
@@ -628,7 +628,7 @@
 .ArchetypePage .name {
   font-size: 2.2em;
   margin: 10px;
-  width: 100%;
+  width: 85%;
   text-align: center;
 }
 .ArchetypePage .info {
@@ -636,6 +636,7 @@
   font-family: "Roboto", sans-serif;
   color: #bbb;
   margin: 5px;
+  min-width: 300px;
 }
 .ArchetypePage .info tr th {
   padding: 10px;
@@ -894,7 +895,7 @@
 .Banlist .banlistName {
   font-size: 2.2em;
   margin: 10px;
-  width: 100%;
+  width: 80%;
   text-align: center;
 }
 .Banlist .info {
@@ -974,7 +975,7 @@
 
 .BasicLineRechart, .ygoChart {
   width: 450px;
-  max-width: 95vw;
+  max-width: 80vw;
 }
 
 .NumberDataDisplay {
@@ -1202,7 +1203,7 @@
 }
 .SearchPanel {
   position: fixed;
-  top: 40%;
+  top: 30%;
   right: 0%;
   display: flex;
   flex-flow: row nowrap;
