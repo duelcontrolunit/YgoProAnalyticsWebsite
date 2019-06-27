@@ -45,7 +45,7 @@ class DeckPage extends Component {
             loses: el.numberOfTimesWhenDeckWasUsed - el.numberOfTimesWhenDeckWon,
             wins: el.numberOfTimesWhenDeckWon
           }
-        }),
+        }).reverse(),
 
         gamesTotal: gamesTotal,
         gamesWon: gamesWon,
