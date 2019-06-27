@@ -1,0 +1,26 @@
+.About {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    .info {
+        padding: 20px;
+        font-size: 1.3em;
+        line-height: 1.3em;
+        max-width: 600px;
+        text-align: center;
+
+        .paragraph {
+            margin-bottom: 30px;
+        }
+
+        a {
+            color: $primary-color;
+        }
+
+        a:hover {
+            color: $primary-light-color;
+        }
+    }
+}

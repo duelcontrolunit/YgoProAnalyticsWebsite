@@ -14,8 +14,8 @@ class Header extends Component {
             name: "Decklist"
         },
         {
-            url: "/stats",
-            name: "Server statistics"
+            url: "/about",
+            name: "About\xa0us"
         },
         {
             url: "/contact",
