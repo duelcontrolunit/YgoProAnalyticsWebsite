@@ -66,8 +66,7 @@ class DeckPage extends Component {
   }
 
   prettifyDate(dateString) {
-    const date = new Date(dateString);
-    return date.getDay() + "." + date.getMonth() + "." + date.getFullYear()
+    return dateString ? dateString.split("T")[0].replace("-",".").replace("-",".") : "";
   }
 
   checkIfProperDeckId() {

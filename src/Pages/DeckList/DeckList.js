@@ -8,6 +8,7 @@ import SelectFromListField from '../../Shared/SelectFromListField/SelectFromList
 class DeckList extends Component {
     state = { 
         archetypesList: [],
+        banlistList: [],
 
         decklistList: [],
         numberOfPages: 0,
@@ -34,6 +35,7 @@ class DeckList extends Component {
     componentDidMount() {
         this.getDecklists();
         this.getArchetypeList();
+        this.getBanlistList();
      }
 
     componentWillUnmount() {
@@ -79,6 +81,13 @@ class DeckList extends Component {
                 return el.name;
             });
             this.setState({archetypesList: archetypeNamesList})
+        });
+    }
+    
+    getBanlistList() {
+        Axios.get("https://localhost:44326/api/banlist/ListOfBanlistsWithIdAndNames")
+        .then(res => {
+            this.setState({banlistList: res.data})
         });
     }
 
@@ -159,8 +168,7 @@ class DeckList extends Component {
         let resultList = [];
         this.state.decklistList.forEach((deck) => {
             const clearName = deck.name.split("_")[0];
-            const date = new Date(deck.whenDecklistWasFirstPlayed);
-            const clearDate = date.getDay() + "." + date.getMonth() + "." + date.getFullYear();
+            const clearDate = deck.whenDecklistWasFirstPlayed.split("T")[0].replace("-",".").replace("-",".");
 
             resultList.push(<DeckResult
              key={deck.id}  
@@ -218,6 +226,19 @@ class DeckList extends Component {
                     <label>Minimum number of games</label>
                     <input type="number" min="0" onChange={event => {this.changeSearchParameter("minNumberOfGames", event.target.value)}} />
 
+                    <label>Banlist</label>
+                    <SelectFromListField 
+                    list={this.state.banlistList.map(el => {
+                        return el.name;
+                    })} 
+                    valueChanger={value => {
+                        let selectedBanlistId = 0;
+                        this.state.banlistList.forEach(el => {
+                            if(el.name === value) selectedBanlistId = el.id + "";
+                        });
+                        this.changeSearchParameter("banlistId",selectedBanlistId)}
+                        } />
+
                     <label>Archetype</label>
                     <SelectFromListField 
                     list={this.state.archetypesList} 
@@ -228,6 +249,21 @@ class DeckList extends Component {
                     
                     <label>To date</label>
                     <input type="date" onChange={event => {this.changeSearchParameter("StatisticsToDate",event.target.value)}}/>
+                    
+                    <label>Wanted cards id's</label>
+                    <input type="text" onChange={event => {this.changeSearchParameter("wantedCardsInDeck",event.target.value)}}/>
+
+                    <label>Sort by games won
+                    <input type="radio" name="orderByGames" onChange={event => {
+                        this.changeSearchParameter("orderByDescendingByNumberOfGames","false")
+                        }}/>
+                    </label>
+
+                    <label>Sort by number of games
+                    <input type="radio" name="orderByGames" onChange={event => {
+                        this.changeSearchParameter("orderByDescendingByNumberOfGames","true")
+                        }}/>
+                    </label>
 
                     <button onClick={() => {
                         this.changeSearchParameter("pageNumber","1");

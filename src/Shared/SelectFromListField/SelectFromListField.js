@@ -21,7 +21,6 @@ class SelectFromListField extends Component {
     }
 
     selectOption(optionValue) {
-        console.log(optionValue);
         this.setState({inputValue: optionValue});
     }
 

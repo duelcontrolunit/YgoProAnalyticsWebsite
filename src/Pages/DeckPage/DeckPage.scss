@@ -14,7 +14,7 @@
     .deckName {
         font-size: 2.2em;
         margin: 10px;
-        width: 100%;
+        width: 80%;
         text-align: center;
     }
 
@@ -44,7 +44,7 @@
     .cardsList {
         align-self: flex-start;
         background-color: rgba(109, 209, 255, 0.2);
-        flex: 1 1 auto;
+        flex: 1 1 80%;
 
         font-family: "Roboto", sans-serif;
         color: #bbb;
