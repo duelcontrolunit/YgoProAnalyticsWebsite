@@ -74,7 +74,7 @@ $navButtonWidth: 80;
         transition: 0.9s ease;
     }
 
-    @for $i from 2 through 5 {
+    @for $i from 2 through 7 {
         .NavButton:nth-of-type( #{$i} ) {
             transition-delay: 0.1 * $i / 2 + s;
             z-index: 10 - $i * 2;
@@ -98,7 +98,7 @@ $navButtonWidth: 80;
         transform:  translateX(0px) scale(1) rotate(0deg);
     }
 
-    @for $i from 2 through 5 {
+    @for $i from 2 through 7 {
         .NavButton:nth-of-type( #{$i} ) {
             margin-right: 0px;
             transform:  translateX( $navButtonWidth * ($i - 1) + px) scale(0) rotate(30 * $i + deg);
@@ -131,7 +131,7 @@ $navButtonWidth: 80;
             transform:  translateX(0px) scale(1) rotate(0deg);
         }
 
-        @for $i from 2 through 5 {
+        @for $i from 2 through 7 {
             .NavButton:nth-of-type( #{$i} ) {
                 margin-right: 0px;
                 transform:  translateY( $navButtonWidth * 0.8 * ($i) * -1 + px) scale(0) rotate(30 * $i + deg);

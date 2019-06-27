@@ -159,6 +159,14 @@
   transition-delay: 0.25s;
   z-index: 0;
 }
+.Nav .NavButton:nth-of-type(6) {
+  transition-delay: 0.3s;
+  z-index: -2;
+}
+.Nav .NavButton:nth-of-type(7) {
+  transition-delay: 0.35s;
+  z-index: -4;
+}
 
 .Nav.collapsed .NavButton {
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
@@ -186,6 +194,14 @@
 .Nav.collapsed .NavButton:nth-of-type(5) {
   margin-right: 0px;
   transform: translateX(320px) scale(0) rotate(150deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(6) {
+  margin-right: 0px;
+  transform: translateX(400px) scale(0) rotate(180deg);
+}
+.Nav.collapsed .NavButton:nth-of-type(7) {
+  margin-right: 0px;
+  transform: translateX(480px) scale(0) rotate(210deg);
 }
 
 @media only screen and (max-width: 600px) {
@@ -221,6 +237,14 @@
   .Nav.collapsed .NavButton:nth-of-type(5) {
     margin-right: 0px;
     transform: translateY(-320px) scale(0) rotate(150deg);
+  }
+  .Nav.collapsed .NavButton:nth-of-type(6) {
+    margin-right: 0px;
+    transform: translateY(-384px) scale(0) rotate(180deg);
+  }
+  .Nav.collapsed .NavButton:nth-of-type(7) {
+    margin-right: 0px;
+    transform: translateY(-448px) scale(0) rotate(210deg);
   }
 }
 .PageContainer {
@@ -413,6 +437,249 @@
 }
 .DeckPage .cardsList.extraDeck {
   background-color: #380228;
+}
+
+.ArchetypeList {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 35px;
+}
+.ArchetypeList .searchResult {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 200px;
+  max-width: 1100px;
+  margin-top: 30px;
+}
+.ArchetypeList .resultsOnPage {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  width: 90%;
+}
+.ArchetypeList .resultsOnPage .desc {
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+.ArchetypeList .resultsOnPage .option {
+  margin-right: 2%;
+  margin-left: 2%;
+  opacity: 0.6;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.ArchetypeList .resultsOnPage .option:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.ArchetypeList .resultsOnPage .option.active {
+  opacity: 1;
+  text-decoration: underline;
+}
+.ArchetypeList .pagesList {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.ArchetypeList .pagesList .pageNumber {
+  background-color: #511963;
+  font-size: 1.2em;
+  text-align: center;
+  border: solid #72238c 1px;
+  border-radius: 2px;
+  margin: 3px;
+  padding: 6px;
+  min-width: 30px;
+  min-height: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.ArchetypeList .pagesList i {
+  margin: 4px;
+  font-size: 0.8em;
+}
+.ArchetypeList .pagesList .currentPage {
+  background-color: #a130c4;
+}
+
+.ArchetypeResult {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+  margin: 5px;
+  background-color: #511963;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  max-width: 150px;
+  min-height: 70px;
+  cursor: pointer;
+}
+.ArchetypeResult .name {
+  padding: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: 600;
+  background-color: #8328a0;
+  width: 100%;
+}
+.ArchetypeResult .gamesWinData {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 1.1em;
+}
+.ArchetypeResult .gamesWinData .games,
+.ArchetypeResult .gamesWinData .win {
+  flex: 1 1 30%;
+  padding: 3px;
+  justify-content: space-around;
+  padding-left: 10%;
+  padding-right: 10%;
+  min-width: 18px;
+}
+.ArchetypeResult .gamesWinData .games .desc,
+.ArchetypeResult .gamesWinData .win .desc {
+  opacity: 0.6;
+  font-size: 0.7em;
+}
+.ArchetypeResult .gamesWinData .games .data,
+.ArchetypeResult .gamesWinData .win .data {
+  width: 100%;
+  font-size: 1em;
+}
+.ArchetypeResult .gamesWinData .win {
+  text-align: right;
+}
+
+.ArchetypeResult:hover {
+  background-color: #6c2184;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+}
+.ArchetypeResult:hover .name {
+  background-color: #942eb4;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.ArchetypeResult:hover .desc {
+  opacity: 0.9;
+}
+.ArchetypeResult:hover .gamesWinData .desc {
+  opacity: 0.9;
+}
+
+.ArchetypeResult:active {
+  background-color: #8629a4;
+}
+.ArchetypeResult:active .name {
+  background-color: #a433c9;
+}
+
+@media only screen and (max-width: 600px) {
+  .ArchetypeResult {
+    font-size: 0.9em;
+  }
+}
+.ArchetypePage {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+}
+.ArchetypePage div {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.ArchetypePage .name {
+  font-size: 2.2em;
+  margin: 10px;
+  width: 80%;
+  text-align: center;
+}
+.ArchetypePage .info {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-family: "Roboto", sans-serif;
+  color: #bbb;
+  margin: 5px;
+}
+.ArchetypePage .info tr th {
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.ArchetypePage .info tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.ArchetypePage .info tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.ArchetypePage .cardsList {
+  align-self: flex-start;
+  background-color: rgba(109, 209, 255, 0.2);
+  flex: 1 1 auto;
+  font-family: "Roboto", sans-serif;
+  color: #bbb;
+  margin: 25px;
+}
+.ArchetypePage .cardsList thead {
+  height: 20px;
+  font-size: 1.4em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.ArchetypePage .cardsList tBody tr th {
+  text-align: left;
+  font-size: 0.9em;
+  padding: 10px;
+  margin: 2px;
+}
+.ArchetypePage .cardsList tBody tr th .card {
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.ArchetypePage .cardsList tBody tr th .card i {
+  font-size: 0.7em;
+  border-radius: 8px;
+  padding: 4px;
+  margin-right: 5px;
+  background-color: rgba(34, 0, 112, 0.644);
+}
+.ArchetypePage .cardsList tBody tr th .card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.ArchetypePage .cardsList tBody tr th:nth-child(1) {
+  color: #ddd;
+}
+.ArchetypePage .cardsList tBody tr th:nth-child(2) {
+  min-width: 20vw;
+}
+.ArchetypePage .cardsList tBody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+.ArchetypePage .cardsList tBody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.ArchetypePage .cardsList {
+  background-color: #27212b;
 }
 
 .BasicLineRechart, .ygoChart {

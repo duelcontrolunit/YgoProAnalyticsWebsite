@@ -5,12 +5,9 @@ class SelectFromListField extends Component {
         hintsList: [],
         inputValue: "",
         fieldFocused: false
-     }
-
-     
+     }     
 
     optionsFromList(event) {
-        console.log(event.target.value);
         let newHintsList = [];
         for (let i = 0; i < this.props.list.length; i++) {
             if(this.props.list[i].toLowerCase().includes(event.target.value.toLowerCase()))
@@ -21,7 +18,6 @@ class SelectFromListField extends Component {
             hintsList: newHintsList,
             inputValue: event.target.value
         });
-        // this.props.archetypeValueChanger(event.target.value);
     }
 
     selectOption(optionValue) {

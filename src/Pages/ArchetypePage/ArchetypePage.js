@@ -4,46 +4,40 @@ import Axios from 'axios';
 import LoadingIcon from "../../Shared/LoadingIcon/LoadingIcon";
 import SimpleButton from "../../Shared/SimpleButton/SimpleButton";
 
-class DeckPage extends Component {
+class ArchetypePage extends Component {
   state = {
-    deck: {
-      decklistId: 0,
+    data: {
+      archetypeId: 0,
       name: "Loading...",
-      archetype: "",
-      mainDeck: {},
-      sideDeck: {},
-      extraDeck: {},
+      cardsList: {},
       statistics: [],
-      firstPlayed: "",
       gamesTotal: 0,
       gamesWon: 0
     },
-    deckLoaded: false,
-    deckNotFound: false
+    dataLoaded: false,
+    dataNotFound: false
   };
 
   componentDidMount() {
-    Axios.get("https://localhost:44326/api/decklist/" + this.props.location.search.split('=')[1]
+    Axios.get("https://localhost:44326/api/archetype/" + this.props.location.search.split('=')[1]
     )
     .then(res => {
       let gamesTotal = 0;
       let gamesWon = 0;  
 
-      let newDeckState = {
-        decklistId: res.data.decklistId,
+      let newDataState = {
+        archetypeId: res.data.archetypeId,
         name: res.data.name.split("_")[0],
         archetype: res.data.archetype,
-        mainDeck: res.data.mainDeck,
-        sideDeck: res.data.sideDeck,
-        extraDeck: res.data.extraDeck,
+        cardsList: res.data.cardsInArchetype,
 
         statistics: res.data.statistics.map(el => {
-          gamesTotal += el.numberOfTimesWhenDeckWasUsed;
-          gamesWon += el.numberOfTimesWhenDeckWon;
+          gamesTotal += el.numberOfDecksWhereWasUsed;
+          gamesWon += el.numberOfTimesWhenArchetypeWon;
           return {
-            date: this.prettifyDate(el.dateWhenDeckWasUsed),
-            loses: el.numberOfTimesWhenDeckWasUsed - el.numberOfTimesWhenDeckWon,
-            wins: el.numberOfTimesWhenDeckWon
+            date: this.prettifyDate(el.dateWhenArchetypeWasUsed),
+            loses: el.numberOfDecksWhereWasUsed - el.numberOfTimesWhenArchetypeWon,
+            wins: el.numberOfTimesWhenArchetypeWon
           }
         }),
 
@@ -52,15 +46,15 @@ class DeckPage extends Component {
         firstPlayed: this.prettifyDate(res.data.whenDeckWasFirstPlayed)
       }
       this.setState({
-        deck: newDeckState,
-        deckLoaded: true,
-        deckNotFound: false
+        data: newDataState,
+        dataLoaded: true,
+        dataNotFound: false
       })
 
     },() => {
       this.setState({
-        deckLoaded: true,
-        deckNotFound: true
+        dataLoaded: true,
+        dataNotFound: true
       });
     });    
   }
@@ -82,7 +76,6 @@ class DeckPage extends Component {
       if(inputString[i] === inputString[i].toUpperCase()) newString += " ";
       newString += inputString[i];
     }
-
     return newString;
   }
 
@@ -90,7 +83,7 @@ class DeckPage extends Component {
   createCardsTable(deck) {
     let cardTable = [];//result variable
     
-    //foreach that goes after every object in object "deck"
+    // foreach that goes after every object in object "deck"
     Object.keys(deck).forEach((type,i) => {
       let cards = [];
       let duplicateCounter = 1;//counting if there are duplicates on cecklist
@@ -113,7 +106,7 @@ class DeckPage extends Component {
         cardTable.push(<tr key={type}>{row}</tr>);
       }
     });
-    
+
     return cardTable;
   }
 
@@ -124,42 +117,23 @@ class DeckPage extends Component {
   render() {
     this.checkIfProperDeckId();
 
-    const mainDeckContent = this.createCardsTable(this.state.deck.mainDeck);
-    const sideDeckContent = this.createCardsTable(this.state.deck.sideDeck);
-    const extraDeckContent = this.createCardsTable(this.state.deck.extraDeck);
-
-    const mainDeckTable = mainDeckContent.length ? (
-      <table className="cardsList mainDeck">
-            <thead><tr><td colSpan="2">Main Deck</td></tr></thead>
+    const cardsListContent = this.createCardsTable(this.state.data.cardsList);
+    const cardsListTable = cardsListContent.length ? (
+      <table className="cardsList">
+            <thead><tr><td colSpan="2">Cards in Archetype</td></tr></thead>
             <tbody>
-              {mainDeckContent}
-            </tbody>
-          </table>
-    ) : ("");
-    const sideDeckTable = sideDeckContent.length ? (
-      <table className="cardsList sideDeck">
-            <thead><tr><td colSpan="2">Side Deck</td></tr></thead>
-            <tbody>
-              {sideDeckContent}
-            </tbody>
-          </table>
-    ) : ("");
-    const extraDeckTable = extraDeckContent.length ? (
-      <table className="cardsList extraDeck">
-            <thead><tr><td colSpan="2">Extra Deck</td></tr></thead>
-            <tbody>
-              {extraDeckContent}
+              {cardsListContent}
             </tbody>
           </table>
     ) : ("");
 
-    if(!this.state.deckLoaded)
+    if(!this.state.dataLoaded)
       return (
         <div className="DeckPage">
           <LoadingIcon visible={true} />
         </div>
       )
-    else if(this.state.deckNotFound)
+    else if(this.state.dataNotFound)
       return (
         <div className="DeckPage">
           <div className="centredFlexContainer">
@@ -170,39 +144,29 @@ class DeckPage extends Component {
         )
     else    
       return (
-        <div className="DeckPage">
-            <div className="deckName">{this.state.deck.name}</div>
+        <div className="ArchetypePage">
+            <div className="name">{this.state.data.name}</div>
 
           <table className="info">
             <tbody>
               <tr>
-                <th>Archetype</th>
-                <th>{this.state.deck.archetype}</th>
-              </tr>
-              <tr>
-                <th>First played</th>
-                <th>{this.state.deck.firstPlayed}</th>
-              </tr>
-              <tr>
                 <th>Games total</th>
-                <th>{this.state.deck.gamesTotal}</th>
+                <th>{this.state.data.gamesTotal}</th>
               </tr>
               <tr>
                 <th>Games Won</th>
-                <th>{this.state.deck.gamesWon}</th>
+                <th>{this.state.data.gamesWon}</th>
               </tr>
             </tbody>
           </table>
 
-          <StackedBarChart data={this.state.deck.statistics} dataKeyName="date" specificDataKeyNames={["wins","loses"]}>Deck win ratio</StackedBarChart>
+          <StackedBarChart data={this.state.data.statistics} dataKeyName="date" specificDataKeyNames={["wins","loses"]}>Deck win ratio</StackedBarChart>
 
-          {mainDeckTable}
-          {sideDeckTable}
-          {extraDeckTable}
+          {cardsListTable}
 
         </div>
       );
   }
 }
 
-export default DeckPage;
+export default ArchetypePage;
