@@ -94,6 +94,7 @@ class DeckList extends Component {
         {
             return Number(locationParameters.pageNumber);
         }
+        
         return 1
     }
 
@@ -105,6 +106,7 @@ class DeckList extends Component {
             if(nameAndValue[0])
                 locationConcreteValues[nameAndValue[0]] = nameAndValue[1];
         });
+
         return locationConcreteValues;
     }
 

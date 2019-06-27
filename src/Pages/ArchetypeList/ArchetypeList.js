@@ -8,7 +8,6 @@ import ArchetypeResult from './ArchetypeResult/ArchetypeResult';
 class ArchetypeList extends Component {
     state = { 
         archetypesList: [],
-
         archetypesResultList: [],
         numberOfPages: 0,
         loadingData: true,
@@ -45,7 +44,6 @@ class ArchetypeList extends Component {
     getData() {
         this.getArchetypeListTimeoutReference = setTimeout(() => {            
             const locParam = this.getLoactionParameters();
-
             let query = "https://localhost:44326/api/archetype";
 
             Object.keys(locParam).forEach((param,i) => {
@@ -94,6 +92,7 @@ class ArchetypeList extends Component {
         {
             return Number(locationParameters.pageNumber);
         }
+        
         return 1
     }
 
@@ -105,6 +104,7 @@ class ArchetypeList extends Component {
             if(nameAndValue[0])
                 locationConcreteValues[nameAndValue[0]] = nameAndValue[1];
         });
+
         return locationConcreteValues;
     }
 
@@ -130,7 +130,7 @@ class ArchetypeList extends Component {
         for (let i = 1; i <= this.state.numberOfPages; i++) {
             let classList = i === currentPage ? "pageNumber currentPage" : "pageNumber"
 
-            if(i+1 > currentPage + pagesOnSidesOfResult) {
+            if(i + 1 > currentPage + pagesOnSidesOfResult) {
                 if(i < this.state.numberOfPages) 
                     pagesList.push(<i className="fas fa-ellipsis-h" key="dots2" />);
                 i = this.state.numberOfPages;
@@ -148,7 +148,7 @@ class ArchetypeList extends Component {
                 </div>
             );
             
-            if(i-1 < currentPage - pagesOnSidesOfResult - 1) {
+            if(i - 1 < currentPage - pagesOnSidesOfResult - 1) {
                 pagesList.push(<i className="fas fa-ellipsis-h" key="dots1" />);
                 i = currentPage - pagesOnSidesOfResult;
             }                
@@ -156,7 +156,6 @@ class ArchetypeList extends Component {
 
         let resultList = [];
         this.state.archetypesResultList.forEach((el) => {
-
             resultList.push(<ArchetypeResult
              key={el.id}  
              clickHandler={() => {this.redirectToArchetypePage(el.id)}}

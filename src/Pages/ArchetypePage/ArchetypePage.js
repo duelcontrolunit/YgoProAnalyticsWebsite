@@ -6,7 +6,7 @@ import SimpleButton from "../../Shared/SimpleButton/SimpleButton";
 
 class ArchetypePage extends Component {
   state = {
-    deck: {
+    data: {
       archetypeId: 0,
       name: "Loading...",
       cardsList: {},
@@ -14,8 +14,8 @@ class ArchetypePage extends Component {
       gamesTotal: 0,
       gamesWon: 0
     },
-    deckLoaded: false,
-    deckNotFound: false
+    dataLoaded: false,
+    dataNotFound: false
   };
 
   componentDidMount() {
@@ -25,12 +25,11 @@ class ArchetypePage extends Component {
       let gamesTotal = 0;
       let gamesWon = 0;  
 
-      let newDeckState = {
+      let newDataState = {
         archetypeId: res.data.archetypeId,
         name: res.data.name.split("_")[0],
         archetype: res.data.archetype,
         cardsList: res.data.cardsInArchetype,
-
 
         statistics: res.data.statistics.map(el => {
           gamesTotal += el.numberOfDecksWhereWasUsed;
@@ -47,15 +46,15 @@ class ArchetypePage extends Component {
         firstPlayed: this.prettifyDate(res.data.whenDeckWasFirstPlayed)
       }
       this.setState({
-        deck: newDeckState,
-        deckLoaded: true,
-        deckNotFound: false
+        data: newDataState,
+        dataLoaded: true,
+        dataNotFound: false
       })
 
     },() => {
       this.setState({
-        deckLoaded: true,
-        deckNotFound: true
+        dataLoaded: true,
+        dataNotFound: true
       });
     });    
   }
@@ -107,6 +106,7 @@ class ArchetypePage extends Component {
         cardTable.push(<tr key={type}>{row}</tr>);
       }
     });
+
     return cardTable;
   }
 
@@ -117,9 +117,7 @@ class ArchetypePage extends Component {
   render() {
     this.checkIfProperDeckId();
 
-    const cardsListContent = this.createCardsTable(this.state.deck.cardsList);
-
-
+    const cardsListContent = this.createCardsTable(this.state.data.cardsList);
     const cardsListTable = cardsListContent.length ? (
       <table className="cardsList">
             <thead><tr><td colSpan="2">Cards in Archetype</td></tr></thead>
@@ -129,13 +127,13 @@ class ArchetypePage extends Component {
           </table>
     ) : ("");
 
-    if(!this.state.deckLoaded)
+    if(!this.state.dataLoaded)
       return (
         <div className="ArchetypePage">
           <LoadingIcon visible={true} />
         </div>
       )
-    else if(this.state.deckNotFound)
+    else if(this.state.dataNotFound)
       return (
         <div className="ArchetypePage">
           <div className="centredFlexContainer">
@@ -147,22 +145,22 @@ class ArchetypePage extends Component {
     else    
       return (
         <div className="ArchetypePage">
-            <div className="name">{this.state.deck.name}</div>
+            <div className="name">{this.state.data.name}</div>
 
           <table className="info">
             <tbody>
               <tr>
                 <th>Games total</th>
-                <th>{this.state.deck.gamesTotal}</th>
+                <th>{this.state.data.gamesTotal}</th>
               </tr>
               <tr>
                 <th>Games Won</th>
-                <th>{this.state.deck.gamesWon}</th>
+                <th>{this.state.data.gamesWon}</th>
               </tr>
             </tbody>
           </table>
 
-          <StackedBarChart data={this.state.deck.statistics} dataKeyName="date" specificDataKeyNames={["wins","loses"]}>Archetype win ratio</StackedBarChart>
+          <StackedBarChart data={this.state.data.statistics} dataKeyName="date" specificDataKeyNames={["wins","loses"]}>Deck win ratio</StackedBarChart>
 
           {cardsListTable}
 
