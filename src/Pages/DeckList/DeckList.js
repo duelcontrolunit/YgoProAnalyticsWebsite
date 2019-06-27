@@ -73,9 +73,9 @@ class DeckList extends Component {
     }
 
     getArchetypeList() {
-        Axios.get("https://localhost:44326/api/Archetype")
+        Axios.get("https://localhost:44326/api/Archetype/ArchetypeListWithIdsAndNames")
         .then(res => {
-            const archetypeNamesList = res.data.archetypes.map(el => {
+            const archetypeNamesList = res.data.map(el => {
                 return el.name;
             });
             this.setState({archetypesList: archetypeNamesList})
