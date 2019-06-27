@@ -39,7 +39,6 @@ class BanlistList extends Component {
     getData() {
         this.getBanlistListTimeoutReference = setTimeout(() => {            
             const locParam = this.getLoactionParameters();
-
             let query = "https://localhost:44326/api/banlist";
 
             Object.keys(locParam).forEach((param,i) => {
