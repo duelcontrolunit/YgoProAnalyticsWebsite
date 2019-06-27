@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import SearchPanel from '../../Shared/SearchPanel/SearchPanel';
-import DeckResult from './DeckResult/DeckResult';
 import Axios from 'axios';
 import LoadingIcon from './../../Shared/LoadingIcon/LoadingIcon';
-import SelectFromListField from '../../Shared/SelectFromListField/SelectFromListField';
+import BanlistResult from './BanlistResult/BanlistResult';
 
-class DeckList extends Component {
+class BanlistList extends Component {
     state = { 
-        archetypesList: [],
-
-        decklistList: [],
+        banlistResultList: [],
         numberOfPages: 0,
-        loadingDecklists: true,
+        loadingData: true,
         errorLoading: false,        
      }
 
     searchParameters = {
-        archetypeName: ""
     }
 
     searchParametersFromLocation() {
         const locParam = this.getLoactionParameters();
-
         Object.keys(locParam).forEach(param => {
             this.searchParameters[param] = locParam[param];
         });
@@ -32,21 +27,19 @@ class DeckList extends Component {
     }
 
     componentDidMount() {
-        this.getDecklists();
-        this.getArchetypeList();
+        this.getData();
      }
 
     componentWillUnmount() {
-        clearTimeout(this.getDeckListTimeoutReference);
+        clearTimeout(this.getBanlistListTimeoutReference);
      }
 
-    getDeckListTimeoutReference = {};
+     getBanlistListTimeoutReference = {};
 
-    getDecklists() {
-        this.getDeckListTimeoutReference = setTimeout(() => {            
+    getData() {
+        this.getBanlistListTimeoutReference = setTimeout(() => {            
             const locParam = this.getLoactionParameters();
-
-            let query = "https://localhost:44326/api/decklist";
+            let query = "https://localhost:44326/api/banlist";
 
             Object.keys(locParam).forEach((param,i) => {
                 if(locParam[param]) {
@@ -58,32 +51,22 @@ class DeckList extends Component {
             Axios.get(query)
             .then(res => {
                 this.setState({
-                decklistList: res.data.decklistWithNumberOfGamesAndWins,
+                banlistResultList: res.data.banlists,
                 numberOfPages: res.data.totalNumberOfPages,
-                loadingDecklists: false,
+                loadingData: false,
                 errorLoading: false
                 });
             },(err) => {
                 this.setState({
-                    loadingDecklists: false,
+                    loadingData: false,
                     errorLoading: true
                 });
             });
         }, 10);
     }
 
-    getArchetypeList() {
-        Axios.get("https://localhost:44326/api/Archetype/ArchetypeListWithIdsAndNames")
-        .then(res => {
-            const archetypeNamesList = res.data.map(el => {
-                return el.name;
-            });
-            this.setState({archetypesList: archetypeNamesList})
-        });
-    }
-
-    redirectToDecklist(id) {
-        this.props.history.push("/deck?id=" + id);
+    redirectToArchetypePage(id) {
+        this.props.history.push("/banlist?id=" + id);
     }
 
     getPageNumber() {
@@ -94,7 +77,7 @@ class DeckList extends Component {
         {
             return Number(locationParameters.pageNumber);
         }
-        
+
         return 1
     }
 
@@ -111,17 +94,17 @@ class DeckList extends Component {
     }
 
     newSearchPage() {
-        let newLocation = "/decklist";
+        let newLocation = "/banlistlist";
         this.setState({
-            decklistList: [],
-            loadingDecklists: true,
+            banlistResultList: [],
+            loadingData: true,
             errorLoading: false
         });        
        Object.keys(this.searchParameters).forEach(param => {
            if(this.searchParameters[param]) newLocation += "?" + param + "=" + this.searchParameters[param].replace(" ", "+");
        });
        this.props.history.push(newLocation);
-       this.getDecklists();
+       this.getData();
     }
 
     render() { 
@@ -132,7 +115,7 @@ class DeckList extends Component {
         for (let i = 1; i <= this.state.numberOfPages; i++) {
             let classList = i === currentPage ? "pageNumber currentPage" : "pageNumber"
 
-            if(i+1 > currentPage + pagesOnSidesOfResult) {
+            if(i + 1 > currentPage + pagesOnSidesOfResult) {
                 if(i < this.state.numberOfPages) 
                     pagesList.push(<i className="fas fa-ellipsis-h" key="dots2" />);
                 i = this.state.numberOfPages;
@@ -150,41 +133,39 @@ class DeckList extends Component {
                 </div>
             );
             
-            if(i-1 < currentPage - pagesOnSidesOfResult - 1) {
+            if(i - 1 < currentPage - pagesOnSidesOfResult - 1) {
                 pagesList.push(<i className="fas fa-ellipsis-h" key="dots1" />);
                 i = currentPage - pagesOnSidesOfResult;
             }                
         }
 
         let resultList = [];
-        this.state.decklistList.forEach((deck) => {
-            const clearName = deck.name.split("_")[0];
-            const date = new Date(deck.whenDecklistWasFirstPlayed);
+        this.state.banlistResultList.forEach((el) => {
+            const date = new Date(el.releaseDate);
             const clearDate = date.getDay() + "." + date.getMonth() + "." + date.getFullYear();
 
-            resultList.push(<DeckResult
-             key={deck.id}  
-             clickHandler={() => {this.redirectToDecklist(deck.id)}}
-             name={clearName}
+            resultList.push(<BanlistResult
+             key={el.id}  
+             clickHandler={() => {this.redirectToArchetypePage(el.id)}}
+             name={el.name}
              date={clearDate}
-             games={deck.numberOfGames}
-             wins={deck.numberOfWins}
+             games={el.howManyTimeWasUsed}
              />);       
         });
 
         const resultsOnPage = this.getLoactionParameters().numberOfResults;
         if(this.state.errorLoading) resultList = (
             <div key="err" className="centredFlexContainer">
-                <h1>Error on loading list of decks :(</h1>
+                <h1>Error on loading list of banlists :(</h1>
             </div>
         );
-        else if (!this.state.loadingDecklists && this.state.decklistList.length === 0) resultList = (
+        else if (!this.state.loadingData && this.state.banlistResultList.length === 0) resultList = (
             <div key="err" className="centredFlexContainer">
                 <h1>No results were found :(</h1>
             </div>
         );
         return ( 
-            <div className="DeckList">
+            <div className="BanlistList">
                 <div className="resultsOnPage">
                     <div className="desc">Results on page:</div>
                     <div className="options">
@@ -217,17 +198,15 @@ class DeckList extends Component {
                 <SearchPanel>
                     <label>Minimum number of games</label>
                     <input type="number" min="0" onChange={event => {this.changeSearchParameter("minNumberOfGames", event.target.value)}} />
-
-                    <label>Archetype</label>
-                    <SelectFromListField 
-                    list={this.state.archetypesList} 
-                    valueChanger={value => {this.changeSearchParameter("archetypeName",value)}} />
                     
                     <label>From date</label>
                     <input type="date" onChange={event => {this.changeSearchParameter("statisticsFromDate",event.target.value)}}/>
                     
                     <label>To date</label>
                     <input type="date" onChange={event => {this.changeSearchParameter("StatisticsToDate",event.target.value)}}/>
+
+                    <label>Format or name</label>
+                    <input type="text" onChange={event => {this.changeSearchParameter("FormatOrName",event.target.value)}}/>
 
                     <button onClick={() => {
                         this.changeSearchParameter("pageNumber","1");
@@ -236,7 +215,7 @@ class DeckList extends Component {
                 </SearchPanel>
                 <div className="searchResult">
                     {resultList}
-                    <LoadingIcon visible={this.state.loadingDecklists} />
+                    <LoadingIcon visible={this.state.loadingData} />
                     </div>
                 <div className="pagesList">{pagesList}</div>
             </div>
@@ -244,4 +223,4 @@ class DeckList extends Component {
     }
 }
  
-export default DeckList;
+export default BanlistList;

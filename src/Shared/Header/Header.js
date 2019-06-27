@@ -30,7 +30,7 @@ class Header extends Component {
             name: "Archetypes"
         },
         {
-            url: "/banlists",
+            url: "/banlistlist",
             name: "Banlists"
         }   ,
         {

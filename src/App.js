@@ -13,6 +13,8 @@ import DeckPage from './Pages/DeckPage/DeckPage';
 import DeckList from './Pages/DeckList/DeckList';
 import ArchetypeList from './Pages/ArchetypeList/ArchetypeList';
 import ArchetypePage from './Pages/ArchetypePage/ArchetypePage';
+import BanlistList from './Pages/BanlistList/BanlistList';
+import BanlistPage from './Pages/BanlistPage/BanlistPage';
 
 class App extends Component {
   state = {
@@ -35,6 +37,8 @@ class App extends Component {
           <Route path="/deck" component={DeckPage} />
           <Route path="/archetypelist" exact component={ArchetypeList} />
           <Route path="/archetype" component={ArchetypePage} />
+          <Route path="/banlistlist" exact component={BanlistList} />
+          <Route path="/banlist" component={BanlistPage} />
           </PageContainer>
         </div>
       </BrowserRouter>

@@ -71,9 +71,9 @@ class ArchetypeList extends Component {
     }
 
     getArchetypeList() {
-        Axios.get("https://localhost:44326/api/Archetype")
+        Axios.get("https://localhost:44326/api/Archetype/ArchetypeListWithIdsAndNames")
         .then(res => {
-            const archetypeNamesList = res.data.archetypes.map(el => {
+            const archetypeNamesList = res.data.map(el => {
                 return el.name;
             });
             this.setState({archetypesList: archetypeNamesList})
@@ -180,31 +180,32 @@ class ArchetypeList extends Component {
             <div className="ArchetypeList">
                 <div className="resultsOnPage">
                     <div className="desc">Results on page:</div>
-
-                    <div className={ resultsOnPage === "10" ? "option active" : "option"}
-                    onClick={() => {
-                        this.changeSearchParameter("numberOfResults", "10");
-                        this.changeSearchParameter("pageNumber","1");
-                        this.newSearchPage();
-                        }}>10</div>
-                    <div className={ resultsOnPage === "25" ? "option active" : "option"}
-                    onClick={() => {
-                        this.changeSearchParameter("numberOfResults", "25");
-                        this.changeSearchParameter("pageNumber","1");
-                        this.newSearchPage();
-                        }}>25</div>
-                    <div className={ resultsOnPage === "50" ? "option active" : "option"}
-                    onClick={() => {
-                        this.changeSearchParameter("numberOfResults", "50");     
-                        this.changeSearchParameter("pageNumber","1");                       
-                        this.newSearchPage();
-                        }}>50</div>
-                    <div className={ resultsOnPage === "100" ? "option active" : "option"}
+                    <div className="options">
+                        <div className={ resultsOnPage === "10" ? "option active" : "option"}
                         onClick={() => {
-                        this.changeSearchParameter("numberOfResults", "100");
-                        this.changeSearchParameter("pageNumber","1");
-                        this.newSearchPage();
-                        }}>100</div>
+                            this.changeSearchParameter("numberOfResults", "10");
+                            this.changeSearchParameter("pageNumber","1");
+                            this.newSearchPage();
+                            }}>10</div>
+                        <div className={ resultsOnPage === "25" ? "option active" : "option"}
+                        onClick={() => {
+                            this.changeSearchParameter("numberOfResults", "25");
+                            this.changeSearchParameter("pageNumber","1");
+                            this.newSearchPage();
+                            }}>25</div>
+                        <div className={ resultsOnPage === "50" ? "option active" : "option"}
+                        onClick={() => {
+                            this.changeSearchParameter("numberOfResults", "50");     
+                            this.changeSearchParameter("pageNumber","1");                       
+                            this.newSearchPage();
+                            }}>50</div>
+                        <div className={ resultsOnPage === "100" ? "option active" : "option"}
+                            onClick={() => {
+                            this.changeSearchParameter("numberOfResults", "100");
+                            this.changeSearchParameter("pageNumber","1");
+                            this.newSearchPage();
+                            }}>100</div>
+                    </div>
                 </div>
                 <SearchPanel>
                     <label>Minimum number of games</label>
